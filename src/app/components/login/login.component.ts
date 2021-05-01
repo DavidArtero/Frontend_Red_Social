@@ -1,5 +1,7 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit{
 
     constructor(
         private _route: ActivatedRoute,
-        private _roter: Router,
+        private _router: Router,
         private _userService: UserService
         
     ){
@@ -51,9 +53,9 @@ export class LoginComponent implements OnInit{
                 if(!this.identity || !this.identity._id){
                     this.status = 'error'
                 }else{
-                    this.status = 'success';
                     console.log("success")
                     //persistir datos de usuario
+                    localStorage.setItem('identity', JSON.stringify(this.identity));
 
                     //conseguir token
                     this.getToken();
@@ -72,15 +74,18 @@ export class LoginComponent implements OnInit{
         this._userService.signup(this.user, 'true').subscribe(
             response => {
                 this.token = response.token;
-                console.log(this.token)
+                //console.log(this.token)
                 if(this.token.length <= 0){
                     this.status = 'error'
                 }else{
-                    this.status = 'success';
                     console.log(this.token)
                     //persistir token de usuario
+                    localStorage.setItem('token', (JSON.stringify,this.token));
 
                     //conseguir los contadores o estadisticas del usuario
+                    this.getCounters();
+
+                   
                 }
             }, error => {
                 var errorMessage = <any>error;
@@ -92,4 +97,17 @@ export class LoginComponent implements OnInit{
         );
     }
 
+    getCounters(){
+        console.log("hello from getCounters")
+        this._userService.getCounters().subscribe(
+            response => {
+                localStorage.setItem('Stats', JSON.stringify(response));
+                this.status = 'success';
+                this._router.navigate(['/']);
+            },
+            error => {
+                console.log(<any>error);
+            }
+        )
+    }
 }
