@@ -37,5 +37,9 @@ export class UserEditComponent implements OnInit{
         console.log("hello from user-edit component")
     }
 
+    onSubmit(){
+        console.log(this.user);
+    }
+
     
 }
