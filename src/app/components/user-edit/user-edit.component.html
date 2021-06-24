@@ -44,6 +44,10 @@
             </span>
         </p>
 
+        <div  *ngIf="user.image">
+            <img style="width: 100px; height: 100px; border-radius: 100px; margin-left: 20px" src="{{url + 'get-image-user/' + user.image}}">
+        </div>
+
         <p>
             <label> Sube tu avatar </label>
             <br>
