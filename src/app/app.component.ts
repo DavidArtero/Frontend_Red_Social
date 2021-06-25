@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params} from '@angular/router';
 import { UserService } from './services/user.service';
 import { GLOBAL } from './services/global'
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit, DoCheck {
   public title : string;
   public identity : string;
   public url: string;
+  collapsed = true;
 
   constructor(
     private _userService: UserService,
@@ -22,6 +24,8 @@ export class AppComponent implements OnInit, DoCheck {
       this.title = 'Red Social'
       this.url = GLOBAL.url;
     }
+
+    
 
     ngOnInit(){
       this.identity = this._userService.getIdentity();
@@ -42,5 +46,6 @@ export class AppComponent implements OnInit, DoCheck {
 
 
 }
+
 
 

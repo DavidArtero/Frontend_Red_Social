@@ -106,9 +106,6 @@ export class UserService{
                                         .set('Authorization',this.getToken());
 
         return this._http.put(this.url + 'update-user/' + user._id, params, {headers: headers});
-       
-       
-       
         
     }
 
