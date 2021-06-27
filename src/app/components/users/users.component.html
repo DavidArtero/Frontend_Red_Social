@@ -11,6 +11,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">País</th>
+                <th scope="col">Following</th>
                 
                 
             </tr>
@@ -30,6 +31,31 @@
                 <td>{{ user.name }}</td>
                 <td>{{ user.surname }}</td>
                 <td><img src="https://www.countryflags.io/ES/flat/24.png"></td>
+                <td>
+                    <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0"> 
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        Follow
+                    </button>
+
+                    <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0"
+                        (mouseenter)="mouseEnter(user._id)"
+                        (mouseleave)="mouseLeave(user._id)"
+                        [class.btn-danger] = "user._id == followUserOver"
+                        >
+
+                        <span *ngIf="user._id == followUserOver; else following">
+                            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                            Don't follow
+                        </span>
+
+                        <ng-template #following>
+                            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                            Following
+                        </ng-template>
+
+                     
+                    </button>
+                </td>
 
             </tr>
     

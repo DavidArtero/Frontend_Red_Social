@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit{
     public pages;
     public users: User[];
     public url: string;
+    public follows;
 
     constructor(
         private _route: ActivatedRoute,
@@ -36,7 +37,6 @@ export class UsersComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        console.log("users.component cargado correctamente")
         this.actualPage();
     }
 
@@ -75,6 +75,8 @@ export class UsersComponent implements OnInit{
                     this.total = response.total;
                     this.users = response.users;
                     this.pages = response.pages;
+                    this.follows = response.users_following;
+                    console.log(this.follows);
                     // console.log(response)
                     // console.log("total-> ",this.total)
                     // console.log("users->", this.users)
@@ -96,6 +98,14 @@ export class UsersComponent implements OnInit{
                 }
             }
         );
+    }
+
+    public followUserOver;
+    mouseEnter(user_id){
+        this.followUserOver = user_id;
+    }
+    mouseLeave(user_id){
+        this.followUserOver = 0;
     }
 }
 
