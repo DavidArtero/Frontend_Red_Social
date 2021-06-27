@@ -1,8 +1,46 @@
 <div class="col-lg-8">
-    <h1> {{title}}</h1>
+    <h1 style="margin-top:30px"> {{title}}</h1>
 
 
+    <div class="table-responsive" style="margin-top:50px; margin-left: 40px;">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nick</th>              
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">País</th>
+                
+                
+            </tr>
+            </thead>
+            <tbody *ngFor="let user of users" class="item-user">
+            <tr>
+                <th scope="row" style="width: 6%;">
+                    <a href="#">
+                        <img src="{{url + 'get-image-user/' + user.image}}" height="40px" width="40px" alt="" style="float:right; border-radius: 50%;" *ngIf="user.image">
+                        <img src="assets/images/undefinedUser.png" height="40px" width="40px" alt="" style="float:right; border-radius: 50%;" *ngIf="!user.image">
+                    </a>
+                    
+                    </th>
+                <td> <a href="#">
+                    {{ user.nick }}
+                </a></td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.surname }}</td>
+                <td><img src="https://www.countryflags.io/ES/flat/24.png"></td>
+
+            </tr>
     
+            </tbody>
+        </table>
+    </div>
 
+    <!-- Paginación -->
+    <ul class="pagination">
+        <li *ngIf="page > 1"><a [routerLink]="['/gente', prePage]">Anterior</a></li>
+        <li *ngIf="pages != page"><a [routerLink]="['/gente', nextPage]">Siguiente</a></li>
 
+    </ul>
 </div>
