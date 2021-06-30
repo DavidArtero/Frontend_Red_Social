@@ -28,5 +28,10 @@ export class SidebarComponent implements OnInit{
     ngOnInit(): void {
        console.log("componente sidebar cargado correctamente")
     }
+    ngDoCheck(){
+        this.stats = this._userService.getStats();
+      }
+
+    
     
 }

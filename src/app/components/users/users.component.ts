@@ -124,6 +124,7 @@ export class UsersComponent implements OnInit{
                     this.status = 'error';
                 }else{
                     this.status = 'success';
+                    this.getCounters();
                     this.follows.push(followed);
                 }
             },
@@ -145,6 +146,7 @@ export class UsersComponent implements OnInit{
                 var search = this.follows.indexOf(followed);
                 if(search != -1){
                     this.follows.splice(search, 1);
+                    this.getCounters();
                 }
             
             },
@@ -160,8 +162,22 @@ export class UsersComponent implements OnInit{
         );
     }
 
-
-
+    getCounters(){
+        this._userService.getCounters().subscribe(
+            response =>{
+                //Guardamos en stats la respuesta JSON
+                localStorage.setItem('stats', JSON.stringify(response));
+                this.status = 'success';
+                
+                
+     
+            }, 
+            error=>{
+                console.log(error);
+            }
+            
+        )
+    }
 }
 
 

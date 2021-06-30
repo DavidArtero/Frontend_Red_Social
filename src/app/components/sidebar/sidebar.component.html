@@ -8,6 +8,7 @@
         <a href="#">
             {{ identity.name + ' ' + identity.surname }}
         </a>
+        <p>{{ identity.nick}}</p>
     </div>
 
     <div class="clearfix"></div>
@@ -20,8 +21,23 @@
                 </span>
 
                 <span class="number-stats">
-                    {{ stats.following }}
+                    {{ stats.value.following }}
                 </span>
+                <br>
+                <span class="label-stats">
+                    Seguidores
+                </span>
+                <span class="number-stats">
+                    {{ stats.value.followed }}
+                </span>
+                <br>
+                <span class="label-stats">
+                    Publicaciones
+                </span>
+                <span class="number-stats">
+                    {{ stats.value.publications }}
+                </span>
+               
             </a>
         </div>
     </div>
