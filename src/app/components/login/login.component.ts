@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit{
         console.log("hello from getCounters")
         this._userService.getCounters().subscribe(
             response => {
-                localStorage.setItem('Stats', JSON.stringify(response));
+                localStorage.setItem('stats', JSON.stringify(response));
                 this.status = 'success';
                 this._router.navigate(['/']);
             },

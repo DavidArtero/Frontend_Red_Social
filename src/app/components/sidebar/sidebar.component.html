@@ -1,0 +1,29 @@
+<div id="user-card" class="col-lg-4">
+    <div class="avatar">
+        <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity.image">
+        <img src="assets/images/undefinedUser.png" *ngIf="!identity.image">
+    </div>
+
+    <div class="name-surname">
+        <a href="#">
+            {{ identity.name + ' ' + identity.surname }}
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="stats" *ngIf="stats">
+        <div class="followng-data">
+            <a href="#">
+                <span class="label-stats">
+                    Siguiendo
+                </span>
+
+                <span class="number-stats">
+                    {{ stats.following }}
+                </span>
+            </a>
+        </div>
+    </div>
+
+</div>
