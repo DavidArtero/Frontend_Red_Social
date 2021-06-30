@@ -31,26 +31,28 @@
                 <td>{{ user.name }}</td>
                 <td>{{ user.surname }}</td>
                 <td><img src="https://www.countryflags.io/ES/flat/24.png"></td>
-                <td>
-                    <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0"> 
+                <td style="min-width: 200px;" *ngIf="user._id != identity._id">
+                    <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0"
+                    (click) = "followUser(user._id)"> 
                         <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                        Follow
+                        Seguir
                     </button>
 
                     <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0"
                         (mouseenter)="mouseEnter(user._id)"
                         (mouseleave)="mouseLeave(user._id)"
+                        (click)="unfollowUser(user._id)"
                         [class.btn-danger] = "user._id == followUserOver"
                         >
 
                         <span *ngIf="user._id == followUserOver; else following">
                             <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                            Don't follow
+                            Dejar de seguir
                         </span>
 
                         <ng-template #following>
                             <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                            Following
+                            Siguiendo
                         </ng-template>
 
                      
