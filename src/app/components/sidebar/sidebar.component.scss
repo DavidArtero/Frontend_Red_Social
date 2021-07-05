@@ -48,14 +48,13 @@ a {
 }
 
 .content-wrapper {
-    margin-left: 100px;
-	width: 300px;
-	max-height: 530px;
+    margin-left: 60px;
+	width: 350px;
+	max-height: 730px;
 	border-radius: 5px;
 	box-shadow: 0 2px 30px rgba(black, .2);
 	background: lighten(#f0f4c3, 10%);
 	position: absolute;
-	top: 50%;
 	left: 50%;
 	overflow-y: hidden;
 	overflow-x: hidden;
@@ -65,8 +64,12 @@ a {
 		display: none;
 	}
 
+    input[type="file"] {
+        color: transparent;
+    }
+
 	.img {
-		width: 302px;
+		width: auto;
 		height: 250px;
 		position: relative;
 		overflow: hidden;

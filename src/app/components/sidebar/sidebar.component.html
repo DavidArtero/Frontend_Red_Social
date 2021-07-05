@@ -1,4 +1,4 @@
-<div id="user-card" class="col-lg-4">
+<div id="user-card" class="col-lg-5">
 
     <div class="content-wrapper">
         <div class="img">
@@ -29,4 +29,29 @@
                     <span>{{ stats.value.followed }}</span>
                     <span>followers</span></div>
         </div>
+    </div>
+
+    <div>
+       <h3>Crear publicación</h3>
+
+       <form #newPubForm="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+                <label for="">¿Que estás pensando?</label>
+                <textarea name="text" #text="ngModel" [(ngModel)] = "publication.text" class="form-control" required></textarea>
+            </p>
+            <span *ngIf="!text.valid && text.touched">
+                El texto de la publicación es obligatorio
+            </span>
+
+        
+                <label for="">Sube tu foto</label>
+                <br>
+                 <input type="file" placeholder="Subir imágen">
+                 <br>
+                <br>
+          
+
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled] = "!newPubForm.form.valid">
+
+       </form>
     </div>
