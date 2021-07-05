@@ -1,45 +1,32 @@
 <div id="user-card" class="col-lg-4">
-    <div class="avatar">
-        <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity.image">
-        <img src="assets/images/undefinedUser.png" *ngIf="!identity.image">
-    </div>
 
-    <div class="name-surname">
-        <a href="#">
-            {{ identity.name + ' ' + identity.surname }}
-        </a>
-        <p>{{ identity.nick}}</p>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <div class="stats" *ngIf="stats">
-        <div class="followng-data">
-            <a href="#">
-                <span class="label-stats">
-                    Siguiendo
-                </span>
-
-                <span class="number-stats">
-                    {{ stats.value.following }}
-                </span>
-                <br>
-                <span class="label-stats">
-                    Seguidores
-                </span>
-                <span class="number-stats">
-                    {{ stats.value.followed }}
-                </span>
-                <br>
-                <span class="label-stats">
-                    Publicaciones
-                </span>
-                <span class="number-stats">
-                    {{ stats.value.publications }}
-                </span>
+    <div class="content-wrapper">
+        <div class="img">
+            <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity.image">
+            <img src="assets/images/undefinedUser.png" *ngIf="!identity.image">
+        
+        </div>
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+        <div class="user">
+            <div class="profile--info"><span class="username">{{ identity.nick }} </span>
+                
+                    <span>{{ identity.name + ' ' + identity.surname }}</span>
                
-            </a>
+                <br/><span
+                    class="userquote">Developer & freelance web designer.</span></div>
+            <div class="user-social-wrapper">
+                <div class="user-info user-followers">
+                    <span> {{ stats.value.publications }}</span>
+                    <span>publications</span></div>
+
+                <div class="user-info user-following">
+                    <span> {{ stats.value.following }}</span>
+                    <span>following</span></div>
+
+                <div class="user-info user-following">
+                    <span>{{ stats.value.followed }}</span>
+                    <span>followers</span></div>
         </div>
     </div>
-
-</div>
