@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { GLOBAL } from 'src/app/services/global';
 import { Publication } from 'src/app/models/publication';
+import { PublicationService } from '../../services/publication.service';
 
 
 @Component({
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    providers: [ UserService]
+    providers: [ UserService, PublicationService]
 })
 export class SidebarComponent implements OnInit{
    
@@ -20,7 +21,8 @@ export class SidebarComponent implements OnInit{
     public publication: Publication;
 
     constructor(
-        private _userService: UserService
+        private _userService: UserService,
+       // private _publicationService: PublicationService
     ){
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
