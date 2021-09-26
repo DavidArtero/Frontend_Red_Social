@@ -32,9 +32,7 @@ export class SidebarComponent implements OnInit{
     }
 
     ngOnInit(): void {
-       console.log("componente sidebar cargado correctamente")
-       console.log("publicaciones-> " , this.stats.publications)
-       console.log("following->" + this.stats.value.following)
+
     }
     ngDoCheck(){
         this.stats = this._userService.getStats();
