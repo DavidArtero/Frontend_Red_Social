@@ -32,9 +32,17 @@
     </div>
 
     <div>
+       
        <h3>Crear publicación</h3>
+       <div class="alert alert-sucess" *ngIf="status == 'success'">
+        Publicación enviada correctamente
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        Publicación no enviada
+    </div>
+    
 
-       <form #newPubForm="ngForm" (ngSubmit)="onSubmit()">
+       <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)">
             <p>
                 <label for="">¿Que estás pensando?</label>
                 <textarea name="text" #text="ngModel" [(ngModel)] = "publication.text" class="form-control" required></textarea>
@@ -44,14 +52,15 @@
             </span>
 
         
-                <label for="">Sube tu foto</label>
+                <label for="">Imagen</label>
                 <br>
                  <input type="file" placeholder="Subir imágen">
                  <br>
                 <br>
           
 
-            <input type="submit" value="Enviar" class="btn btn-success" [disabled] = "!newPubForm.form.valid">
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled] = "!newPubForm.form.valid" 
+            style="margin-bottom:35px">
 
        </form>
     </div>

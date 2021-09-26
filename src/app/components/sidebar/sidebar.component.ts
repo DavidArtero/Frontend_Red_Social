@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit{
 
     constructor(
         private _userService: UserService,
-       // private _publicationService: PublicationService
+        private _publicationService: PublicationService
     ){
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
@@ -33,14 +33,49 @@ export class SidebarComponent implements OnInit{
 
     ngOnInit(): void {
        console.log("componente sidebar cargado correctamente")
+       console.log("publicaciones-> " , this.stats.publications)
+       console.log("following->" + this.stats.value.following)
     }
     ngDoCheck(){
         this.stats = this._userService.getStats();
       }
 
-      onSubmit(){
-          console.log(this.publication);
+      onSubmit(form){
+          //console.log(this.publication);
+          this._publicationService.addPublication(this.token, this.publication).subscribe(
+              response=>{
+                  if(response.publication){
+                      this.publication = response.publication;
+                      this.status = 'success';
+                      this.getCounters();
+                      form.reset();
+                  }else{
+                      this.status = 'error';
+                  }
+              },
+              error=>{
+                  var errorMessage =<any>error;
+                  console.log(errorMessage)
+                    if(errorMessage!=null){
+                        this.status = 'error';
+                    }
+                }
+          )
+
       }
+
+      getCounters(){
+        this._userService.getCounters().subscribe(
+            response =>{
+                //Guardamos en stats la respuesta JSON
+                localStorage.setItem('stats', JSON.stringify(response));
+                this.status = 'success';
+            }, 
+            error=>{
+                console.log(error);
+            } 
+        )
+    }
 
     
     

@@ -168,14 +168,10 @@ export class UsersComponent implements OnInit{
                 //Guardamos en stats la respuesta JSON
                 localStorage.setItem('stats', JSON.stringify(response));
                 this.status = 'success';
-                
-                
-     
             }, 
             error=>{
                 console.log(error);
-            }
-            
+            } 
         )
     }
 }
