@@ -80,19 +80,24 @@ export class TimelineComponent implements OnInit {
   public noMore = false;
   viewMore(){
       console.log("publi.length->" + this.publications.length)
-      console.log("this.total->" + this.total)
+      console.log("this.total->" + (this.total-4))
       
   
           this.page = this.page+1;
-          if(this.publications.length == this.total){
+          if(this.publications.length >= (this.total-4)){
             this.noMore = true;
             console.log("noMore = true")
            
           }else{
               console.log("inside call getPublications")
-            this.getPublications(this.page, true);
+           
           }
-          
+          this.getPublications(this.page, true);
+      }
+
+      //Refresh publications
+      refresh(event:any){
+        this.getPublications (this.page);
       }
 
   }

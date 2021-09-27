@@ -67,7 +67,6 @@ export class UserService{
         }else{
             this.token = null;
         }
-        console.log("getToken->", this.token)
         return this.token;
     }
 
