@@ -39,6 +39,11 @@ export class TimelineComponent implements OnInit {
   ngOnInit(): void {
     console.log('Timeline cargado correctamente');
     this.getPublications(this.page);
+
+    //let's see if setInterval works
+     setInterval(() => {
+      this.getPublications (this.page);
+    }, 9000);
   }
 
   getPublications(page, adding = false) {
@@ -99,6 +104,8 @@ export class TimelineComponent implements OnInit {
       refresh(event:any){
         this.getPublications (this.page);
       }
+
+      
 
   }
 
