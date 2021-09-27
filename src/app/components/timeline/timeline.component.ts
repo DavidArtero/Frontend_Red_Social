@@ -6,6 +6,7 @@ import { GLOBAL } from '../../services/global';
 import { PublicationService } from '../../services/publication.service';
 
 
+
 @Component({
     selector: 'timeline',
     templateUrl: './timeline.component.html',
@@ -43,6 +44,8 @@ export class TimelineComponent implements OnInit{
     ngOnInit(): void {
         console.log("Timeline cargado correctamente" );
         this.getPublications(this.page);
+        
+        
     }
 
     getPublications(page){
