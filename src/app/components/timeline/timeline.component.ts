@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import { Publication } from 'src/app/models/publication';
 import { UserService } from 'src/app/services/user.service';
 import { GLOBAL } from '../../services/global';
 import { PublicationService } from '../../services/publication.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'timeline',
@@ -60,6 +62,9 @@ export class TimelineComponent implements OnInit {
             var arrayA = this.publications;
             var arrayB = response.publications;
             this.publications = arrayA.concat(arrayB);
+            
+            //scroll down
+            $("html").animate({scrollTop:$("html").prop("scrollHeight")},500);
           }
 
           //If user try other url
