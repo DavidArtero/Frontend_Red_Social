@@ -17,6 +17,7 @@ import { UsersComponent } from './components/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { MomentModule } from 'ngx-moment';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -29,7 +30,8 @@ import { MomentModule } from 'ngx-moment';
     UserEditComponent,
     UsersComponent,
     SidebarComponent,
-    TimelineComponent
+    TimelineComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

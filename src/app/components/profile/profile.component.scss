@@ -1,0 +1,22 @@
+.divProfileBackgroundPick{
+    max-width: 940px; position: relative; 
+    flex-shrink: 1; 
+    z-index: -1; 
+    align-items: center; 
+    overflow-x: hidden; 
+    overflow-y: hidden;     
+    border-style: solid;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-width: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    margin: 0 auto;
+    border-radius:0px 0px max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 0px 0px 8px 8px;
+    max-height: 475px;
+    margin-top:-110px;
+}
