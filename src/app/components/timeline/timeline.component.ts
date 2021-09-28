@@ -43,9 +43,7 @@ export class TimelineComponent implements OnInit {
     this.getPublications(this.page);
 
     //let's see if setInterval works
-     setInterval(() => {
-      this.getPublications (this.page);
-    }, 9000);
+    
   }
 
   getPublications(page, adding = false) {
@@ -57,6 +55,7 @@ export class TimelineComponent implements OnInit {
           this.itemsPerPage = response.items_per_page;
 
           if (!adding) {
+            console.log("!adding")
             this.publications = response.publications;
           } else {
             var arrayA = this.publications;
@@ -89,20 +88,18 @@ export class TimelineComponent implements OnInit {
 
   public noMore = false;
   viewMore(){
-      console.log("publi.length->" + this.publications.length)
-      console.log("this.total->" + (this.total-4))
+       console.log("this.page->" + this.page);
+       console.log("this.total->" + (this.pages));
       
-  
           this.page = this.page+1;
-          if(this.publications.length >= (this.total-4)){
+          if(this.page == this.pages){
             this.noMore = true;
             console.log("noMore = true")
-           
-          }else{
-              console.log("inside call getPublications")
-           
+            
           }
-          this.getPublications(this.page, true);
+            this.getPublications(this.page, true);
+          
+          
       }
 
       //Refresh publications

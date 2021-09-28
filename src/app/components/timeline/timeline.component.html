@@ -32,7 +32,7 @@
         </div>
     
         <!-- button view more -->
-        <div class="col-lg-12" style="text-align:center">
+        <div class="col-lg-12" style="text-align:center" *ngIf="publications && publications.length">
           <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore">
             ver más publicaciones
           </button>
