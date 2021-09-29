@@ -5,12 +5,12 @@
     </div>
 
     <div style="text-align: center; margin-top: 20px">
-        <h1 style="line-height: 1.1875; word-break: break-word">{{ identity.name + " " + identity.surname }}</h1>
+        <h1 style="line-height: 1.1875; word-break: break-word; text-transform: capitalize;">{{ identity.name + " " + identity.surname }}</h1>
 
         <!-- profile picture -->
         <div style="margin-top: -220px">
          
-            <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="{{ url + 'get-image-user/' + user.image }}" alt="" />
+            <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="{{ url + 'get-image-user/' + user.image }}" alt=""/>
 
         </div>
     </div>
