@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { FollowService } from 'src/app/services/follow.service';
 import { GLOBAL } from 'src/app/services/global';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -13,7 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss'],
-    providers: [UserService, FollowService, MatMenuModule ],
+    providers: [UserService, FollowService, MatMenuModule, MatDialogModule],
   })
 
 
@@ -31,7 +32,8 @@ import { MatMenuModule } from '@angular/material/menu';
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
-        private _followService: FollowService
+        private _followService: FollowService,
+        public dialog: MatDialogModule
     ){
         this.title = 'Perfil';
         this.identity = this._userService.getIdentity();
@@ -52,6 +54,10 @@ import { MatMenuModule } from '@angular/material/menu';
             this.getUser(id);
         })
     }
+
+    openDialog() {
+        //this.dialog.open(DialogElementsExampleDialog);
+      }
 
     getUser(id){
         this._userService.getUser(id).subscribe(
