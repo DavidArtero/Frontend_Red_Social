@@ -16,13 +16,13 @@
     </div>
 
     <mat-menu #belowMenu="matMenu" yPosition="below">
-        <button mat-menu-item style="font-size: .9375rem; font-weight: 500;">
+        <button mat-menu-item  style="font-size: .9375rem; font-weight: 500;">
             <i data-visualcompletion="cass-image" class="updateProfilePicture" style="background-position: 0px -84px;"></i>
             Ver foto de perfil
         </button>
         <div style="display:inline-flex">
          
-            <button mat-menu-item style="font-size: .9375rem; font-weight: 500;">
+            <button mat-menu-item mat-button style="font-size: .9375rem; font-weight: 500;">
                 <i data-visualcompletion="cass-image" class="updateProfilePicture" style= "background-position: 0px -42px;"></i>
                 Actualizar foto de perfil</button>
          </div>
@@ -67,6 +67,46 @@
                 </div>
             </a>
         </div>
-
     </div>
+    
+
+   <div class="container" style="display:contents">
+    <div *ngFor="let publication of publications" class="item-publication">
+        <div class="card" style="width: 500px!important; margin: 0 auto;">
+          <div class="card-body" style="align-self: self-start; ">
+            <div style="display:inline-flex">
+              <a href="#" style="margin-top: 4px;">
+                <img src="{{url + 'get-image-user/' + publication.user.image}}" height="40px" width="40px" alt=""
+                  style="border-radius: 50%;" *ngIf="publication.user.image">
+                <img src="../../../assets/images/undefinedUser.png" height="40px" width="40px" alt=""
+                  style="border-radius: 50%;" *ngIf="!publication.user.image">
+              </a>
+              <div style="margin-left:15px">
+                <h5 class="card-title">{{ publication.user.name + ' ' + publication.user.surname }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"
+                  style="text-align: left; font-weight: 400; font-size: 13px; padding-left: 3px;">
+                  {{ (publication.created_at | amFromUnix) | amLocale:'es' | amTimeAgo }}</h6>
+              </div>
+              <br>
+            </div>
+
+            <p class="card-text"> {{ publication.text }}
+              <!-- <a href="#!" class="card-link">Card link</a>
+              <a href="#!" class="card-link">Another link</a> -->
+          </div>
+        </div>
+        <br />
+      </div>
+
+    </div>>
 </div>
+
+
+
+  
+
+
+
+
+
+

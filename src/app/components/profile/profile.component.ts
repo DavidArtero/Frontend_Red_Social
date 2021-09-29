@@ -7,14 +7,18 @@ import { FollowService } from 'src/app/services/follow.service';
 import { GLOBAL } from 'src/app/services/global';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { dialogElementsUpdateProfilePic } from '../dialogs/dialogElementsUpdateProfilePic.component';
+import {MatDialog} from '@angular/material/dialog';
+import { PublicationService } from 'src/app/services/publication.service';
+import { Publication } from 'src/app/models/publication';
+import * as $ from 'jquery';
 
 
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss'],
-    providers: [UserService, FollowService, MatMenuModule, MatDialogModule],
+    providers: [UserService, FollowService, MatMenuModule, MatDialogModule, dialogElementsUpdateProfilePic, PublicationService],
   })
 
 
@@ -27,18 +31,25 @@ import { MatDialogModule } from '@angular/material/dialog';
     public stats;
     public url;
     public follow;
+    public page: number;
+    public total: number;
+    public pages:number;
+    public itemsPerPage:number;
+    public publications: Publication[];
 
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
         private _followService: FollowService,
-        public dialog: MatDialogModule
+        public dialog: MatDialog,
+        private _publicationService: PublicationService
     ){
         this.title = 'Perfil';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
+        this.page = 1;
 
     }
     
@@ -46,6 +57,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ngOnInit(): void {
         console.log('Profile Component cargado correctamente');
         this.loadPage();
+        this.getPublications(this.page);
     }
 
     loadPage(){
@@ -55,9 +67,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         })
     }
 
-    openDialog() {
-        //this.dialog.open(DialogElementsExampleDialog);
-      }
+    modalUpdateProfile = false;
 
     getUser(id){
         this._userService.getUser(id).subscribe(
@@ -81,6 +91,46 @@ import { MatDialogModule } from '@angular/material/dialog';
     enlargeImage(x) {
         x.style.height = "64px";
         x.style.width = "64px";
+      }    
+      
+      getPublications(page, adding = false) {
+        this._publicationService.getPublications(this.token, page).subscribe(
+          (response) => {
+            if (response.publications) {
+              this.total = response.total_items;
+              this.pages = response.pages;
+              this.itemsPerPage = response.items_per_page;
+    
+              if (!adding) {
+                console.log("!adding")
+                this.publications = response.publications;
+              } else {
+                var arrayA = this.publications;
+                var arrayB = response.publications;
+                this.publications = arrayA.concat(arrayB);
+                
+                //scroll down
+                $("html").animate({scrollTop:$("html").prop("scrollHeight")},500);
+              }
+    
+              //If user try other url
+              if (page > this.pages) {
+                //this._router.navigate(['/home']);
+              }
+            } else {
+              this.status = 'error';
+            }
+          },
+    
+          (error) => {
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+    
+            if (errorMessage != null) {
+              this.status = 'error';
+            }
+          }
+        );
       }
 
   }

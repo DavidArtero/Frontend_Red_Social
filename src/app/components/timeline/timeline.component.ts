@@ -62,8 +62,7 @@ export class TimelineComponent implements OnInit {
             var arrayB = response.publications;
             this.publications = arrayA.concat(arrayB);
             
-            //scroll down
-            $("html").animate({scrollTop:$("html").prop("scrollHeight")},500);
+
           }
 
           //If user try other url
