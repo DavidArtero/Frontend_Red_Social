@@ -5,12 +5,15 @@ import { Follow } from '../../models/follow';
 import { UserService } from 'src/app/services/user.service';
 import { FollowService } from 'src/app/services/follow.service';
 import { GLOBAL } from 'src/app/services/global';
+import { MatMenuModule } from '@angular/material/menu';
+
+
 
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss'],
-    providers: [UserService, FollowService],
+    providers: [UserService, FollowService, MatMenuModule ],
   })
 
 

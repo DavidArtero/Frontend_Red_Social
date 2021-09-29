@@ -4,6 +4,7 @@ import { FormsModule} from '@angular/forms';
 // Importar HttpClientModule para hacer peticiones Ajax a la BD
 import {HttpClientModule} from '@angular/common/http';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,7 +19,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { MomentModule } from 'ngx-moment';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    BrowserAnimationsModule,
+    MatMenuModule
 
   ],
   providers: [],

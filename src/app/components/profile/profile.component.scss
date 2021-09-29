@@ -25,7 +25,41 @@
 .buttonLinkProfile:hover {
     background-color: gray;
     color:white !important;
-    
+}
+
+.profileSmallImage{
+          height: 168px;
+          width: 168px;
+          border-radius: 50%;
+          border: 4px solid;
+          border-color: white;
+          cursor: pointer;
+}
+
+.profileSmallImage:active {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+}
+
+
+button.mat-menu-item {
+    width: inherit;
+}
+
+button.mat-menu-item:focus {
+    outline: 1px dotted;
+    outline: none;
+}
+
+.updateProfilePicture{
+   background-image: url(https://www.facebook.com/rsrc.php/v3/yA/r/rt4JWkHNEuE.png);
+                background-size: auto;
+                width: 20px;
+                height: 20px;
+                background-repeat: no-repeat;
+                display: inline-block;
+                align-self: center;
+                margin-right:10px;
 }
 
 

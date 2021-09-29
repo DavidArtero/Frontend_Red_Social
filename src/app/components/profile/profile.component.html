@@ -5,23 +5,36 @@
     </div>
 
     <div style="text-align: center; margin-top: 20px">
-        <h1 style="line-height: 1.1875; word-break: break-word">David Artero</h1>
+        <h1 style="line-height: 1.1875; word-break: break-word">{{ identity.name + " " + identity.surname }}</h1>
 
         <!-- profile picture -->
-        <div style="margin-top: -230px">
-            <img src="{{ url + 'get-image-user/' + user.image }}" alt="" style="
-          height: 168px;
-          width: 168px;
-          border-radius: 50%;
-          border: 4px solid;
-          border-color: white;
-          cursor: pointer;
-        " />
+        <div style="margin-top: -220px">
+         
+            <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="{{ url + 'get-image-user/' + user.image }}" alt="" />
+
         </div>
     </div>
 
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item style="font-size: .9375rem; font-weight: 500;">
+            <i data-visualcompletion="cass-image" class="updateProfilePicture" style="background-position: 0px -84px;"></i>
+            Ver foto de perfil
+        </button>
+        <div style="display:inline-flex">
+         
+            <button mat-menu-item style="font-size: .9375rem; font-weight: 500;">
+                <i data-visualcompletion="cass-image" class="updateProfilePicture" style= "background-position: 0px -42px;"></i>
+                Actualizar foto de perfil</button>
+         </div>
+    </mat-menu>
+
+
+    <div class="contain" style="max-height: fit-content; border-bottom: 1px solid #ced0d4; margin-top:62px">
+
+    </div>
+
     <!-- Items -->
-    <div class="container" style="margin-top:80px">
+    <div class="container" style="margin-top:25px;">
         <div class="centerwrapper" style="margin: auto; width: 302pt; width: max-content;">
 
             <a href="#">
