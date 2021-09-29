@@ -69,5 +69,9 @@ import { GLOBAL } from 'src/app/services/global';
             }
         )
     }
+    enlargeImage(x) {
+        x.style.height = "64px";
+        x.style.width = "64px";
+      }
 
   }
