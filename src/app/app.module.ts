@@ -23,6 +23,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { MomentModule } from 'ngx-moment';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePublicationComponent } from './components/profile/profilePublication/profilePublication.component';
 
 
 
@@ -36,7 +37,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     UsersComponent,
     SidebarComponent,
     TimelineComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfilePublicationComponent
   ],
   imports: [
     BrowserModule,

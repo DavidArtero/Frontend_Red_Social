@@ -7,6 +7,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UsersComponent } from './components/users/users.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePublicationComponent } from './components/profile/profilePublication/profilePublication.component';
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: 'gente/:page' , component: UsersComponent},
   {path: 'gente' , component: UsersComponent},
   {path: 'timeline' , component: TimelineComponent},
-  {path: 'perfil/:id' , component: ProfileComponent},
+  {path: 'perfil/:id' , component: ProfilePublicationComponent},
   {path: '**' , component: HomeComponent}
 
   
