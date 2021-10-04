@@ -68,3 +68,14 @@ button.mat-menu-item:focus {
     height: 36px;
     width: 36px;
 }
+
+.active{
+    font-weight: 600; 
+    float: left;
+    margin:1pt; 
+    width:120pt; 
+    height:25px; 
+    text-align: center; 
+    cursor: pointer;
+    color: #007bff;
+}
