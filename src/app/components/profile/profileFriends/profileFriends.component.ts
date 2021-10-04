@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../models/user';
-import { Follow } from '../../models/follow';
+import { User } from '../../../models/user';
+import { Follow } from '../../../models/follow';
 import { UserService } from 'src/app/services/user.service';
 import { FollowService } from 'src/app/services/follow.service';
 import { GLOBAL } from 'src/app/services/global';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-import { dialogElementsUpdateProfilePic } from '../dialogs/dialogElementsUpdateProfilePic.component';
+import { dialogElementsUpdateProfilePic } from '../../dialogs/dialogElementsUpdateProfilePic.component';
 import {MatDialog} from '@angular/material/dialog';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
+import { ProfileComponent } from '../profile.component';
 import * as $ from 'jquery';
 
 
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss'],
+    selector: 'profileFriends',
+    templateUrl: './profileFriends.component.html',
+    styleUrls: ['./profileFriends.component.scss'],
     providers: [UserService, FollowService, MatMenuModule, MatDialogModule, dialogElementsUpdateProfilePic, PublicationService],
   })
 
 
-  export class ProfileComponent implements OnInit {
+  export class ProfileFriendsComponent implements OnInit {
     public title: string;
     public user: User;
     public status: string;
@@ -37,7 +38,9 @@ import * as $ from 'jquery';
     public itemsPerPage:number;
     public publications: Publication[];
 
+    
     constructor(
+
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
@@ -55,8 +58,9 @@ import * as $ from 'jquery';
     
     
     ngOnInit(): void {
+        console.log('Profile Publication Component cargado correctamente');
         this.loadPage();
-       
+
     }
 
     loadPage(){
@@ -87,11 +91,7 @@ import * as $ from 'jquery';
             }
         )
     }
-    enlargeImage(x) {
-        x.style.height = "64px";
-        x.style.width = "64px";
-      }    
-      
-
+     
+     
 
   }

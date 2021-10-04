@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 // Importar HttpClientModule para hacer peticiones Ajax a la BD
 import {HttpClientModule} from '@angular/common/http';
@@ -24,6 +24,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { MomentModule } from 'ngx-moment';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfilePublicationComponent } from './components/profile/profilePublication/profilePublication.component';
+import { ProfileFriendsComponent } from './components/profile/profileFriends/profileFriends.component';
 
 
 
@@ -38,7 +39,8 @@ import { ProfilePublicationComponent } from './components/profile/profilePublica
     SidebarComponent,
     TimelineComponent,
     ProfileComponent,
-    ProfilePublicationComponent
+    ProfilePublicationComponent,
+    ProfileFriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,13 @@ import { ProfilePublicationComponent } from './components/profile/profilePublica
     MatDialogModule
 
   ],
+
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
+
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  
 })
 export class AppModule { }
