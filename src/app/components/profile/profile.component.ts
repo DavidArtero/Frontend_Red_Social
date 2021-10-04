@@ -56,6 +56,7 @@ import * as $ from 'jquery';
     
     ngOnInit(): void {
         this.loadPage();
+        
        
     }
 
@@ -63,7 +64,11 @@ import * as $ from 'jquery';
         this._route.params.subscribe(params=>{
             let id = params['id'];
             this.getUser(id);
-        })
+        });
+        console.log("identi", this.identity._id)
+        console.log("HELLOOOOOOOOOOOOOOOO")
+        console.log(this.user._id);
+        console.log("identi", this.identity._id)
     }
 
     modalUpdateProfile = false;

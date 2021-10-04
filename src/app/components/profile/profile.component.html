@@ -37,7 +37,7 @@
     <div class="container" style="margin-top:25px;">
         <div class="centerwrapper" style="margin: auto; width: 302pt; width: max-content;">
 
-            <a [routerLink]= "['/perfil/ + {{ user.id }}'] " [routerLinkActive]="['active']" style="cursor:pointer">
+            <a [routerLink]= "['/perfil/', identity._id] " [routerLinkActive]="['active']" style="cursor:pointer">
                 <div style="float: left;margin:1pt; width:120pt; height:72pt; text-align: center; cursor: pointer;">
                     <div style="cursor:pointer">
                         <span style="font-weight: 600; float: left;margin:1pt; width:120pt; height:25px; text-align: center; cursor: pointer;">
@@ -56,7 +56,7 @@
             </a>
 
 
-            <a href="#">
+            <a [routerLink]= "['/perfil/', identity._id, 'amigos'] " [routerLinkActive]="['active']" style="cursor:pointer">
                 <div style="float: left;margin:1pt; width:120pt; height:72pt; text-align: center; cursor: pointer;">              
                         <span style="color:#65676b">Amigos</span>
                 </div>
