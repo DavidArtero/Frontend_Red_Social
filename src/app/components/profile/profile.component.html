@@ -22,8 +22,16 @@
         [matMenuTriggerFor]="belowMenu"
         class="profileSmallImage"
         src="{{ url + 'get-image-user/' + user.image }}"
-        alt=""
+        alt="" *ngIf="user.image"
       />
+      <img  
+      [matMenuTriggerFor]="belowMenu"
+      class="profileSmallImage"
+      src="assets/images/undefinedUser.png" 
+      alt="" *ngIf="!user.image" >
+     
+
+
     </div>
   </div>
 
