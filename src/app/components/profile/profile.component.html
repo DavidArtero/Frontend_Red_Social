@@ -1,18 +1,49 @@
 <div class="col-lg-8" style="margin: 0 auto">
   <div class="divProfileBackgroundPick">
+
+
+
     <img
       src="https://scontent.fbcn7-2.fna.fbcdn.net/v/t31.18172-8/p640x640/15972385_10212029278788042_7128806983890594505_o.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=9PrH2A7JEfQAX-hnzex&_nc_ht=scontent.fbcn7-2.fna&oh=2aeb056825bb8cc85a022153f19cc147&oe=617935B3" />
-  </div>
+    </div>
+     
 
-  <div style="text-align: center; margin-top: 20px">
+  <div class="col-lg-12" style="text-align: center; margin-top: 20px">
     <!-- profile picture -->
-    <div style="margin-top: -160px; margin-bottom: 25px">
+    <div style="margin-top: -160px; margin-bottom: 12px;">
       <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="{{ url + 'get-image-user/' + user.image }}"
         alt="" *ngIf="user.image" />
       <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="assets/images/undefinedUser.png" alt=""
         *ngIf="!user.image" />
+
+
+        <!-- background picture edit -->
+        <div style="position:absolute;     
+          cursor: pointer;
+          right: 14%;
+          top: 85px;">
+          <div style="height: 30px; width: 197px; background-color: white; text-align: center; 
+          border-radius: 10px; ">
+              <span style=" position: relative;
+                  top: 20%;
+                  transform: translateY(-50%);
+                  cursor: pointer;">
+                  <a href="" 
+                  style="color: black;
+                  font-weight: 500;">
+                  Editar foto de portada</a> 
+                  </span> 
+          </div>
+      </div>
+   
     </div>
 
+
+   
+
+
+
+    <!-- name && surname -->
     <div style="text-align: center; display: inline-flex">
       <h1 style="
           line-height: 1.1875;
@@ -23,8 +54,8 @@
       </h1>
       <div style="position: absolute; margin-left: 168px; bottom: 50px;" *ngIf="followed">
         <div style="
-            bottom: 6px;
-            padding: 0.08rem;;
+            bottom: -12px;
+            padding: 0.08rem;
             color: royalblue;;
             cursor: context-menu; font-weight: 500;" 
             class="card card-body bg-light">
