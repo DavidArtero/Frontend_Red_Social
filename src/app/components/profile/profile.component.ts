@@ -62,7 +62,7 @@ import * as $ from 'jquery';
 
     loadPage(){
         this._route.params.subscribe(params=>{
-            let id = params['id'];
+            var id = params['id'];
             this.getUser(id);
         });
         console.log("identi", this.identity._id)
@@ -86,7 +86,7 @@ import * as $ from 'jquery';
                 }
             },
             error=>{
-                console.log("'/perfil'" + this.identity._id)
+                console.log("'perfil'" + this.identity._id)
                 this._router.navigate(['/perfil', this.identity._id]);
 
             }
@@ -97,6 +97,6 @@ import * as $ from 'jquery';
         x.style.width = "64px";
       }    
       
-
+     
 
   }

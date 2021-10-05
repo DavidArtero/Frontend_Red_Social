@@ -1,4 +1,9 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../../models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -11,7 +16,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
 import * as $ from 'jquery';
-
 
 @Component({
   selector: 'profilePublication',
@@ -40,6 +44,8 @@ export class ProfilePublicationComponent implements OnInit {
   public pages: number;
   public itemsPerPage: number;
   public publications: Publication[];
+  public userId: string;
+  public Usertext: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -54,19 +60,24 @@ export class ProfilePublicationComponent implements OnInit {
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
     this.page = 1;
+    this.Usertext = this._router.url;
   }
 
   ngOnInit(): void {
     console.log('Profile Publication Component cargado correctamente');
     this.loadPage();
-    this.getOwnPublications(this.page);
+
+    this.Usertext = this.Usertext.split('/').pop();
+
+    this.getUserPublications(this.Usertext, this.page);
   }
 
   loadPage() {
     this._route.params.subscribe((params) => {
-      let id = params['id'];
-      this.getUser(id);
-    });
+        var id = params['id'];
+        this.getUser(id);
+      });
+
   }
 
   modalUpdateProfile = false;
@@ -88,46 +99,65 @@ export class ProfilePublicationComponent implements OnInit {
     );
   }
 
-  getOwnPublications(page, adding = false) {
-    this._publicationService.getOwnPublications(this.token, page).subscribe(
-      (response) => {
-        if (response.publications) {
-          this.total = response.total_items;
-          this.pages = response.pages;
-          this.itemsPerPage = response.items_per_page;
+  getUserPublications(user, page, adding = false) {
+    this._publicationService
+      .getPublicationsUser(this.token, user, page)
+      .subscribe(
+        (response) => {
+          if (response.publications) {
+            this.total = response.total_items;
+            this.pages = response.pages;
+            this.itemsPerPage = response.items_per_page;
 
-          if (!adding) {
-            console.log('!adding');
-            this.publications = response.publications;
+            if (!adding) {
+              console.log('!adding');
+              this.publications = response.publications;
+              console.log("publicaciones->",this.publications)
+            } else {
+              alert("else")
+              var arrayA = this.publications;
+              var arrayB = response.publications;
+              this.publications = arrayA.concat(arrayB);
+
+              //scroll down
+              $('html').animate(
+                { scrollTop: $('html').prop('scrollHeight') },
+                500
+              );
+            }
+
+            //If user try other url
+            if (page > this.pages) {
+              //this._router.navigate(['/home']);
+            }
           } else {
-            var arrayA = this.publications;
-            var arrayB = response.publications;
-            this.publications = arrayA.concat(arrayB);
-
-            //scroll down
-            $('html').animate(
-              { scrollTop: $('html').prop('scrollHeight') },
-              500
-            );
+            this.status = 'error';
           }
+        },
 
-          //If user try other url
-          if (page > this.pages) {
-            //this._router.navigate(['/home']);
+        (error) => {
+          var errorMessage = <any>error;
+          console.log(errorMessage);
+
+          if (errorMessage != null) {
+            this.status = 'error';
           }
-        } else {
-          this.status = 'error';
         }
-      },
-
-      (error) => {
-        var errorMessage = <any>error;
-        console.log(errorMessage);
-
-        if (errorMessage != null) {
-          this.status = 'error';
-        }
-      }
-    );
+      );
   }
+
+  public noMore = false;
+  viewMore(){
+       console.log("this.page->" + this.page);
+       console.log("this.total->" + (this.pages));
+      
+          this.page = this.page+1;
+          if(this.page == this.pages){
+            this.noMore = true;
+            console.log("noMore = true")
+            
+          }
+          alert("llamando a getUserPublications")
+            this.getUserPublications(this.Usertext,this.page, true); 
+      }
 }

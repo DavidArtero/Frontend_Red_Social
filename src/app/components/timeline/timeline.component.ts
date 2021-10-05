@@ -96,9 +96,7 @@ export class TimelineComponent implements OnInit {
             console.log("noMore = true")
             
           }
-            this.getPublications(this.page, true);
-          
-          
+            this.getPublications(this.page, true); 
       }
 
       //Refresh publications

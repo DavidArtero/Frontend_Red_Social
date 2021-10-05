@@ -13,7 +13,7 @@
         text-transform: capitalize;
       "
     >
-      {{ identity.name + " " + identity.surname }}
+      {{ user.name + " " + user.surname }}
     </h1>
 
     <!-- profile picture -->
@@ -80,7 +80,7 @@
         >
           <div style="cursor: pointer">
             <span
-              [routerLink]="['/perfil/', identity._id]"
+              [routerLink]="['/perfil/', user._id]"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }"
             >
@@ -117,7 +117,7 @@
           "
         >
           <span
-            [routerLink]="['/perfil/', identity._id, 'amigos']"
+            [routerLink]="['/perfil/', user._id, 'amigos']"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
