@@ -30,12 +30,14 @@ import * as $ from 'jquery';
     public token;
     public stats;
     public url;
-    public follow;
+    public followed;
+    public following;
     public page: number;
     public total: number;
     public pages:number;
     public itemsPerPage:number;
     public publications: Publication[];
+    public itsMyOwnPage:Boolean;
 
     constructor(
         private _route: ActivatedRoute,
@@ -50,6 +52,9 @@ import * as $ from 'jquery';
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
         this.page = 1;
+        this.following = false;
+        this.followed = false;
+        this.itsMyOwnPage = false;
 
     }
     
@@ -66,9 +71,15 @@ import * as $ from 'jquery';
             this.getUser(id);
         });
         console.log("identi", this.identity._id)
-        console.log("HELLOOOOOOOOOOOOOOOO")
-        console.log(this.user._id);
-        console.log("identi", this.identity._id)
+        console.log("userId->" , this.user._id)
+    
+
+        // if(this.identity._id == this.user._id){
+        //     this.itsMyOwnPage = true;
+        // }
+
+
+
     }
 
     modalUpdateProfile = false;
@@ -79,6 +90,19 @@ import * as $ from 'jquery';
                 if(response.user){
                     console.log(response);
                     this.user = response.user;
+
+
+                    if(response.following && response.following._id){
+                        this.following = true;
+                    }else{
+                        this.following = false;
+                    }
+
+                    if(response.followed && response.followed._id){
+                        this.followed = true;
+                    }else{
+                        this.followed = false;
+                    }
                     
                 }else{
                     this.status = 'error';

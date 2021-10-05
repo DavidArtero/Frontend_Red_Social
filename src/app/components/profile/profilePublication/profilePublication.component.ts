@@ -114,7 +114,6 @@ export class ProfilePublicationComponent implements OnInit {
               this.publications = response.publications;
               console.log("publicaciones->",this.publications)
             } else {
-              alert("else")
               var arrayA = this.publications;
               var arrayB = response.publications;
               this.publications = arrayA.concat(arrayB);
