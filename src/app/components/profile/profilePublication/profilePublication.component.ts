@@ -147,17 +147,13 @@ export class ProfilePublicationComponent implements OnInit {
   }
 
   public noMore = false;
-  viewMore(){
-       console.log("this.page->" + this.page);
-       console.log("this.total->" + (this.pages));
-      
+  viewMore(){    
           this.page = this.page+1;
           if(this.page == this.pages){
             this.noMore = true;
             console.log("noMore = true")
-            
           }
-          alert("llamando a getUserPublications")
+         
             this.getUserPublications(this.Usertext,this.page, true); 
       }
 }
