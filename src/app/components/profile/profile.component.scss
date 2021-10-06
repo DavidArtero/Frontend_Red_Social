@@ -37,6 +37,8 @@
 }
 
 
+
+
 button.mat-menu-item {
     width: inherit;
 }
@@ -79,3 +81,12 @@ button.mat-menu-item:focus {
     cursor: pointer;
     color: #007bff;
 }
+
+.editBackgroundButton:hover {
+    transform: scale(1.05);   
+}
+
+.editBackgroundButton a:hover{
+    text-decoration: none;
+}
+

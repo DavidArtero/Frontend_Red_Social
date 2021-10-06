@@ -28,17 +28,18 @@
           cursor: pointer;
           right: 14%;
           top: 85px;">
-          <div style="height: 30px; width: 117px; background-color: white; text-align: center; 
+          <div class="editBackgroundButton" style="height: 30px; width: 117px; background-color: white; text-align: center; 
           border-radius: 10px; ">
               <span style=" position: relative;
-                  top: 12%;
+                  top: 19%;
                   transform: translateY(-50%);
                   cursor: pointer;">
-                  <i class="fa fa-edit" style="font-size:22px"></i>
+                  <i class="fa fa-camera" style="font-size:19px"></i>
                   <a href="" 
                   style="color: black;
                   font-weight: 500;
-                  vertical-align: text-bottom;">
+                  vertical-align: text-bottom;
+                  margin-left:3px">
                   Editar foto </a> 
                   </span> 
           </div>
@@ -98,18 +99,16 @@
   <!-- Items -->
   <div class="container" style="margin-top: 25px">
     <div class="centerwrapper" style="margin: auto; width: 302pt; width: max-content">
-      <a style="cursor: pointer">
+      <a>
         <div style="
             float: left;
             margin: 1pt;
             width: 120pt;
-            height: 72pt;
             text-align: center;
-            cursor: pointer;
           ">
-          <div style="cursor: pointer">
+          <div>
             <span [routerLink]="['/perfil/', user._id]" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }">
+              [routerLinkActiveOptions]="{ exact: true }" style="cursor:pointer">
               Publicaciones</span>
           </div>
         </div>
@@ -120,7 +119,6 @@
             float: left;
             margin: 1pt;
             width: 120pt;
-            height: 72pt;
             text-align: center;
             cursor: pointer;
           ">
@@ -133,7 +131,6 @@
             float: left;
             margin: 1pt;
             width: 120pt;
-            height: 72pt;
             text-align: center;
             cursor: pointer;
           ">
@@ -148,7 +145,6 @@
             float: left;
             margin: 1pt;
             width: 120pt;
-            height: 72pt;
             text-align: center;
             cursor: pointer;
           ">
@@ -158,5 +154,8 @@
     </div>
   </div>
 
+  
+
   <!-- <profilePublication></profilePublication>  -->
 </div>
+
