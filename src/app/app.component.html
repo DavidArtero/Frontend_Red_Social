@@ -6,7 +6,7 @@
   </button>
 
 
-  <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+  <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent" style="z-index: 1;">
   
       <ul class="navbar-nav mr-auto" *ngIf="identity">
         <li class="nav-item">
@@ -69,6 +69,7 @@
             Mis datos</a>
           <a ngbDropdownItem href="#" (click)="logout()">  
             <span class="fa fa-sign-out"></span>
+            
             Cerrar sesión</a>
         </div>
       </li>
@@ -76,5 +77,7 @@
    
   </div>
 </nav>
+
+
 
 <router-outlet></router-outlet>
