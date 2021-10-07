@@ -25,7 +25,8 @@ import { MomentModule } from 'ngx-moment';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfilePublicationComponent } from './components/profile/profilePublication/profilePublication.component';
 import { ProfileFriendsComponent } from './components/profile/profileFriends/profileFriends.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { AutoFocusDirectiveDirective } from './components/directives/auto-focus-directive.directive'; 
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ProfileFriendsComponent } from './components/profile/profileFriends/pro
     TimelineComponent,
     ProfileComponent,
     ProfilePublicationComponent,
-    ProfileFriendsComponent
+    ProfileFriendsComponent,
+    AutoFocusDirectiveDirective
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,9 @@ import { ProfileFriendsComponent } from './components/profile/profileFriends/pro
     MomentModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
+    FormsModule
 
   ],
 

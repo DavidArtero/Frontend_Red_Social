@@ -15,6 +15,8 @@ import { dialogElementsUpdateProfilePic } from '../../dialogs/dialogElementsUpda
 import { MatDialog } from '@angular/material/dialog';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
+import {MatTabsModule} from '@angular/material/tabs';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -46,6 +48,7 @@ export class ProfilePublicationComponent implements OnInit {
   public publications: Publication[];
   public userId: string;
   public Usertext: string;
+  
 
   constructor(
     private _route: ActivatedRoute,
@@ -155,4 +158,13 @@ export class ProfilePublicationComponent implements OnInit {
          
             this.getUserPublications(this.Usertext,this.page, true); 
       }
+
+      openDialog(dialog) {
+        const dialogRef = this.dialog.open(dialog);
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+      }
+
 }

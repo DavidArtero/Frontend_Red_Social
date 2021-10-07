@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { Follow } from '../../models/follow';
@@ -22,7 +22,7 @@ import * as $ from 'jquery';
   })
 
 
-  export class ProfileComponent implements OnInit {
+  export class ProfileComponent implements OnInit, AfterViewInit {
     public title: string;
     public user: User;
     public status: string;
@@ -38,6 +38,7 @@ import * as $ from 'jquery';
     public itemsPerPage:number;
     public publications: Publication[];
     public itsMyOwnPage:Boolean;
+    public load:boolean;
 
     constructor(
         private _route: ActivatedRoute,
@@ -46,6 +47,7 @@ import * as $ from 'jquery';
         private _followService: FollowService,
         public dialog: MatDialog,
         private _publicationService: PublicationService
+        
     ){
         this.title = 'Perfil';
         this.identity = this._userService.getIdentity();
@@ -55,13 +57,16 @@ import * as $ from 'jquery';
         this.following = false;
         this.followed = false;
         this.itsMyOwnPage = false;
+        this.load = false;
 
+    }
+    ngAfterViewInit(): void {
+       
     }
     
     
     ngOnInit(): void {
         this.loadPage();
-        
        
     }
 
@@ -69,9 +74,10 @@ import * as $ from 'jquery';
         this._route.params.subscribe(params=>{
             var id = params['id'];
             this.getUser(id);
+            this.load=true;
         });
-        console.log("identi", this.identity._id)
-        console.log("userId->" , this.user._id)
+        
+       
     
 
         // if(this.identity._id == this.user._id){
@@ -121,6 +127,6 @@ import * as $ from 'jquery';
         x.style.width = "64px";
       }    
       
-     
+      
 
   }

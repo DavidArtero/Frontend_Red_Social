@@ -19,8 +19,7 @@ const routes: Routes = [
   {path: 'gente/:page' , component: UsersComponent},
   {path: 'gente' , component: UsersComponent},
   {path: 'timeline' , component: TimelineComponent},
-  {path: 'perfil/:id' , component: ProfilePublicationComponent},
-  {path: 'perfil/:id/amigos' , component: ProfileFriendsComponent},
+  {path: 'perfil/:id' , component: ProfileComponent},
   {path: '**' , component: HomeComponent}
 ];
 

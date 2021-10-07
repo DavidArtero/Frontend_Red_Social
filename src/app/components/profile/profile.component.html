@@ -1,26 +1,33 @@
-<div class="col-lg-8" style="margin: 0 auto; ">
-  <div class="divProfileBackgroundPick">
+<div  class="col-lg-8" style="margin: 0 auto; ">
+  <div *ngIf="load" class="divProfileBackgroundPick">
 
+    
+    <img *ngIf="user.backgroundImage; else noImage"
+    src="{{ url + 'get-image-user/' + user.backgroundImage}}"
+   />
 
-
+   <ng-template #noImage>
     <img
       src="https://scontent.fbcn7-2.fna.fbcdn.net/v/t31.18172-8/p640x640/15972385_10212029278788042_7128806983890594505_o.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=9PrH2A7JEfQAX-hnzex&_nc_ht=scontent.fbcn7-2.fna&oh=2aeb056825bb8cc85a022153f19cc147&oe=617935B3" 
-      *ngIf="!user.backgroundImage"/>
+     />
+  </ng-template>
 
-      <img
-      src="{{ url + 'get-image-user/' + user.backgroundImage}}"
-      *ngIf="user.backgroundImage"/>
+
+     
     
     </div>
      
 
   <div class="col-lg-12" style="text-align: center; margin-top: 20px">
     <!-- profile picture -->
-    <div style="margin-top: -160px; margin-bottom: 12px;">
-      <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="{{ url + 'get-image-user/' + user.image }}"
-        alt="" *ngIf="user.image" />
-      <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="assets/images/undefinedUser.png" alt=""
-        *ngIf="!user.image" />
+    <div  style="margin-top: -160px; margin-bottom: 12px;">
+      <img *ngIf="user.image; else noProfileImage" [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="{{ url + 'get-image-user/' + user.image }}"
+        alt=""  />
+
+      <ng-template #noProfileImage>
+        <img [matMenuTriggerFor]="belowMenu" class="profileSmallImage" src="assets/images/undefinedUser.png" alt=""
+          *ngIf="!user.image" />
+      </ng-template>
 
 
         <!-- background picture edit -->
@@ -49,9 +56,6 @@
 
 
    
-
-
-
     <!-- name && surname -->
     <div style="text-align: center; display: inline-flex">
       <h1 style="
@@ -77,6 +81,7 @@
     </div>
   </div>
 
+  <!-- menú foto  central-->
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button mat-menu-item style="font-size: 0.9375rem; font-weight: 500">
       <i data-visualcompletion="cass-image" class="updateProfilePicture" style="background-position: 0px -84px"></i>
@@ -90,14 +95,31 @@
     </div>
   </mat-menu>
 
-  <div class="contain" style="
-      max-height: fit-content;
-      border-bottom: 1px solid #ced0d4;
-      margin-top: 15px;
-    "></div>
 
-  <!-- Items -->
-  <div class="container" style="margin-top: 25px">
+
+
+  <mat-tab-group animationDuration="0ms"  mat-align-tabs="center" style="margin-top:25px">
+    <mat-tab label="Publicaciones" >
+     <profilePublication ></profilePublication>
+     </mat-tab>
+
+    <mat-tab label="Información">
+      Informacion
+    </mat-tab>
+
+    <mat-tab label="Amigos">
+      <profilePublication></profilePublication>
+    </mat-tab>
+
+    <mat-tab label="Fotos">Fotos Content</mat-tab>
+
+    
+  </mat-tab-group>
+  <br>
+    
+    
+     <!-- Items -->
+  <!-- <div class="container" style="margin-top: 25px">
     <div class="centerwrapper" style="margin: auto; width: 302pt; width: max-content">
       <a>
         <div style="
@@ -152,9 +174,7 @@
         </div>
       </a>
     </div>
-  </div>
-
-  
+  </div> -->
 
   <!-- <profilePublication></profilePublication>  -->
 </div>

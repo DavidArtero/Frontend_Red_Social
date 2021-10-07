@@ -90,3 +90,11 @@ button.mat-menu-item:focus {
     text-decoration: none;
 }
 
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #007bff;
+}
+
+//selected menu at start
+::ng-deep.mat-tab-label-active{
+    opacity: 1.0!important;
+}
