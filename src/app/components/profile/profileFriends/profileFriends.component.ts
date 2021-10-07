@@ -37,6 +37,8 @@ import * as $ from 'jquery';
     public pages:number;
     public itemsPerPage:number;
     public publications: Publication[];
+    public follows;
+    public following;
 
     
     constructor(
@@ -66,18 +68,18 @@ import * as $ from 'jquery';
     loadPage(){
         this._route.params.subscribe(params=>{
             let id = params['id'];
-            this.getUser(id);
+            this.getFollowingUsers(id);
         })
     }
 
     modalUpdateProfile = false;
 
-    getUser(id){
-        this._userService.getUser(id).subscribe(
+    getFollowingUsers(id){
+        this._followService.getFollowing(this.token, id).subscribe(
             response=>{
-                if(response.user){
-                    console.log(response);
-                    this.user = response.user;
+                if(response.follows){
+                    console.log(response.follows);
+                    this.follows = response.follows;
                     
                 }else{
                     this.status = 'error';

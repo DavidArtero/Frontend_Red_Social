@@ -113,9 +113,9 @@ export class ProfilePublicationComponent implements OnInit {
             this.itemsPerPage = response.items_per_page;
 
             if (!adding) {
-              console.log('!adding');
+              //console.log('!adding');
               this.publications = response.publications;
-              console.log("publicaciones->",this.publications)
+              //console.log("publicaciones->",this.publications)
             } else {
               var arrayA = this.publications;
               var arrayB = response.publications;
