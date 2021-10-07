@@ -19,7 +19,7 @@ import * as $ from 'jquery';
     selector: 'profileFriends',
     templateUrl: './profileFriends.component.html',
     styleUrls: ['./profileFriends.component.scss'],
-    providers: [UserService, FollowService, MatMenuModule, MatDialogModule, dialogElementsUpdateProfilePic, PublicationService],
+    providers: [UserService, FollowService],
   })
 
 
