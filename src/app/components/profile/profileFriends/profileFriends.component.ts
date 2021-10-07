@@ -78,7 +78,9 @@ import * as $ from 'jquery';
         this._followService.getFollowing(this.token, id).subscribe(
             response=>{
                 if(response.follows){
-                    console.log(response.follows);
+                    console.log("RESPUESTA FOLLOWS",response);
+                    // alert(response.total);
+                    // alert(response.pages);
                     this.follows = response.follows;
                     
                 }else{
