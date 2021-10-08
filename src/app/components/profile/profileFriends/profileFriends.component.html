@@ -1,34 +1,28 @@
 <!-- Seguidos -->
-<div  style="margin-top: 80px; text-align: center; overflow: hidden; 
-            height: 2000px;">
+<div style="margin-top: 80px; text-align: center; overflow: hidden;">
     <div class="card-data" style="place-content: center;">
-        <div *ngFor="let follow of follows" class="card">
-            
-                
-            <img class="imageProfileFriends" height="auto" width="80"
-            src="{{ url + 'get-image-user/' + follow.followed.image }}"
-            *ngIf="follow.followed.image != null; else noImage" />
 
-           <ng-template #noImage>
-              <img class="imageProfileFriends" height="80" width="80"
-                src="../../../assets/images/undefinedUser.png" alt="" />
-         </ng-template>
- 
-    
+        <div *ngFor="let follow of follows" class="divUserFriends">
 
-   
-        <h5 class="card-title">
-            {{ follow.followed.name + " " + follow.followed.surname }}
-        </h5>
-    
-                
+            <div class="secondDivUserFriends">
+                <div style="float: left;">
+                    <img class="imageProfileFriends" height="100" width="100"
+                        src="{{ url + 'get-image-user/' + follow.followed.image }}"
+                        *ngIf="follow.followed.image != null; else noImage" />
 
-               
+                    <ng-template #noImage>
+                        <img class="imageProfileFriends" height="100" width="100"
+                            src="../../../assets/images/undefinedUser.png" alt="" />
+                    </ng-template>
+                </div>
 
-         
+                <p style="float: left; margin-left: 30px;">
+
+                    {{ follow.followed.name + " " + follow.followed.surname }}
+                </p>
+            </div>
 
 
-            <br />
         </div>
     </div>
 </div>
