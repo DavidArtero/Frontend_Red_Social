@@ -39,6 +39,8 @@ import * as $ from 'jquery';
     public publications: Publication[];
     public follows;
     public following;
+    public noMore;
+    public id;
 
     
     constructor(
@@ -55,6 +57,7 @@ import * as $ from 'jquery';
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
         this.page = 1;
+        this.noMore = false;
 
     }
     
@@ -67,23 +70,43 @@ import * as $ from 'jquery';
 
     loadPage(){
         this._route.params.subscribe(params=>{
-            let id = params['id'];
-            this.getFollowingUsers(id);
+            this.id = params['id'];
+            this.getFollowingUsers(this.id,this.page);
         })
     }
 
     modalUpdateProfile = false;
 
-    getFollowingUsers(id){
-        this._followService.getFollowing(this.token, id).subscribe(
+    
+    getFollowingUsers(id,page,adding=false){
+       
+        this._followService.getFollowing(this.token, id, page).subscribe(
             response=>{
                 if(response.follows){
-                    console.log("RESPUESTA FOLLOWS",response);
-                    // alert(response.total);
-                    // alert(response.pages);
-                    this.follows = response.follows;
-                    
-                }else{
+
+                        this.total = response.total;
+                        this.pages = response.pages;
+                       
+                        this.itemsPerPage = response.total;
+                        
+
+                        if (!adding) {
+                            //console.log('!adding');
+                            this.follows = response.follows;
+                            //console.log("publicaciones->",this.publications)
+                          }else{
+                            var arrayA = this.follows;
+                            var arrayB = response.follows;
+                            this.follows = arrayA.concat(arrayB);
+                            console.log("RESPUESTA FOLLOWS",response);
+                          }
+                        // alert(response.total);
+                        // alert(response.pages);
+                      
+                        console.log(this.follows)
+                        this.viewMore();
+
+                    }else{
                     this.status = 'error';
                     
                 }
@@ -94,8 +117,21 @@ import * as $ from 'jquery';
 
             }
         )
-    }
-     
-     
 
+       
+    }
+
+    viewMore(){            
+        this.page = this.page+1;
+
+        if(this.page <= this.pages){
+          
+          this.getFollowingUsers(this.id,this.page,true);  
+        }else{
+            this.noMore = true;
+            console.log("noMore = true")
+        }
+       
+          
+    }
   }

@@ -34,7 +34,7 @@ export class FollowService{
     }
 
     //Usuarios que sigo
-    getFollowing(token,id,page = 1):Observable<any>{
+    getFollowing(token,id,page):Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
         .set('Authorization', token);
 
@@ -47,5 +47,6 @@ export class FollowService{
         return this._http.get(url, {headers:headers})
 
    }
+   
 
 }

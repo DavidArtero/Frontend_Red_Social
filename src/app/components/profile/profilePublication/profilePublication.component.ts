@@ -128,10 +128,7 @@ export class ProfilePublicationComponent implements OnInit {
               );
             }
 
-            //If user try other url
-            if (page > this.pages) {
-              //this._router.navigate(['/home']);
-            }
+  
           } else {
             this.status = 'error';
           }
@@ -155,7 +152,6 @@ export class ProfilePublicationComponent implements OnInit {
             this.noMore = true;
             console.log("noMore = true")
           }
-         
             this.getUserPublications(this.Usertext,this.page, true); 
       }
 
