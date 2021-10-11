@@ -1,37 +1,29 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light" style="z-index: 1;">
   <div class="d-flex order-0">
     <a class="navbar-brand mr-1" href="#">Logo</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#collapsingNavbar"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
   </div>
-  <div
-    class="navbar-collapse collapse justify-content-center order-1"
-    id="collapsingNavbar"
-  >
+  <div class="navbar-collapse collapse justify-content-center order-1" id="collapsingNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]= "['/home']" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">
           <span class="fa fa-home"></span>
-          Home 
+          Home
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink] ="['/timeline']" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['/timeline']" [routerLinkActive]="['active']">
           <span class="fa fa-th-list"></span>
-          Timeline 
+          Timeline
         </a>
       </li>
-  
+
       <li class="nav-item">
-        <a class="nav-link" [routerLink] ="['/gente']" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['/gente']" [routerLinkActive]="['active']">
           <span class="fa fa-user"></span>
-          Gente 
+          Gente
         </a>
       </li>
     </ul>
@@ -40,22 +32,14 @@
   <div class="order-3">
     <ul class="navbar-nav" *ngIf="!identity">
       <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/login']"
-          [routerLinkActive]="['active']"
-        >
+        <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">
           <span class="fa fa-sign-in"></span>
           Login
         </a>
       </li>
 
       <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/registro']"
-          [routerLinkActive]="['active']"
-        >
+        <a class="nav-link" [routerLink]="['/registro']" [routerLinkActive]="['active']">
           <span class="fa fa-user"></span>
           Registro
         </a>
@@ -64,52 +48,23 @@
 
     <ul class="navbar-nav margin-left:auto" *ngIf="identity">
       <li class="avatar">
-        <img
-          src="{{ url + 'get-image-user/' + identity.image }}"
-          *ngIf="identity && identity.image"
-        />
+        <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image" />
       </li>
-      <li
-        class="nav-item"
-        ngbDropdown
-        display="dynamic"
-        placement="bottom-right"
-      >
-        <a
-          class="nav-link"
-          tabindex="0"
-          ngbDropdownToggle
-          id="navbarDropdown3"
-          role="button"
-        >
+      <li class="nav-link" ngbDropdown display="dynamic" placement="bottom-right" style="padding-top:5px">
+        <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button" >
           {{ identity.name }} <span class="caret"></span>
         </a>
-        <div
-          ngbDropdownMenu
-          aria-labelledby="navbarDropdown3"
-          class="dropdown-menu"
-        >
-          <a
-            ngbDropdownItem
-            [routerLink]="['/mis-datos']"
-            (click)="$event.preventDefault()"
-          >
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+          <a ngbDropdownItem [routerLink]="['/mis-datos']" (click)="$event.preventDefault()">
             <span class="fa fa-user"></span>
-            Perfil</a
-          >
-          <a
-            ngbDropdownItem
-            [routerLink]="['/mis-datos']"
-            (click)="$event.preventDefault()"
-          >
+            Perfil</a>
+          <a ngbDropdownItem [routerLink]="['/mis-datos']" (click)="$event.preventDefault()">
             <span class="fa fa-cog"></span>
-            Mis datos</a
-          >
+            Mis datos</a>
           <a ngbDropdownItem href="#" (click)="logout()">
             <span class="fa fa-sign-out"></span>
 
-            Cerrar sesión</a
-          >
+            Cerrar sesión</a>
         </div>
       </li>
     </ul>
