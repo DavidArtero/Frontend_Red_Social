@@ -26,6 +26,10 @@
                   <!-- <a href="#!" class="card-link">Card link</a>
                   <a href="#!" class="card-link">Another link</a> -->
               </div>
+
+              <div *ngIf="publication.file.length>4"  style="padding-bottom: 15px;">
+                <img width="230px" height="auto" src="{{ url + 'get-image-pub/' + publication.file }}">
+              </div>
             </div>
             <br />
           </div>
