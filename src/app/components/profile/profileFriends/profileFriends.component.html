@@ -21,26 +21,26 @@
                     {{ follow.followed.name + " " + follow.followed.surname }}
                 </p>
 
-     
-                    <span style="position:absolute; top:20px; right:7px; color: gray; height: 26px;"
+                    <div *ngIf="isLoginUserProfile">
+                    <span  style="position:absolute; top:20px; right:7px; color: gray; height: 26px;"
                          mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon style="cursor: pointer;vertical-align: top;">more_vert</mat-icon>
                     </span>
-                      <mat-menu #menu="matMenu"> 
-                        <button mat-menu-item disabled>
+                      <mat-menu  #menu="matMenu"> 
+                        <button mat-menu-item>
                           <mat-icon><i class="material-icons">person_add_disabled</i></mat-icon>
                           <span style="font-weight: 500;">Dejar de seguir</span>
                         </button>
-                        <button mat-menu-item disabled>
+                        <button mat-menu-item>
                           <mat-icon>voicemail</mat-icon>
-                          <span>Check voice mail</span>
+                          <span style="font-weight: 500;">Check voice mail</span>
                         </button>
-                        <button mat-menu-item disabled>
+                        <button mat-menu-item>
                           <mat-icon>notifications_off</mat-icon>
-                          <span>Disable alerts</span>
+                          <span style="font-weight: 500;"> Disable alerts</span>
                         </button>
                       </mat-menu>
-
+                    </div>
             </div>
 
             <div>

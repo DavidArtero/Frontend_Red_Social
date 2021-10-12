@@ -38,6 +38,7 @@ export class ProfileFriendsComponent implements OnInit {
   public following;
   public noMore;
   public id;
+  public isLoginUserProfile:Boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -53,17 +54,25 @@ export class ProfileFriendsComponent implements OnInit {
     this.url = GLOBAL.url;
     this.page = 1;
     this.noMore = false;
+    this.isLoginUserProfile = false;
   }
 
   ngOnInit(): void {
     console.log('Profile Publication Component cargado correctamente');
     this.loadPage();
+
   }
 
   loadPage() {
     this._route.params.subscribe((params) => {
       this.id = params['id'];
       this.getFollowingUsers(this.id, this.page);
+
+      if(this.identity._id == this.id){
+        this.isLoginUserProfile = true;
+      }
+
+   
     });
   }
 
