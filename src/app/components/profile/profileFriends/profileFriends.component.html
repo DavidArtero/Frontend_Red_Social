@@ -20,27 +20,34 @@
 
                     {{ follow.followed.name + " " + follow.followed.surname }}
                 </p>
+
+     
+                    <span style="position:absolute; top:20px; right:7px; color: gray; height: 26px;"
+                         mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon style="cursor: pointer;vertical-align: top;">more_vert</mat-icon>
+                    </span>
+                      <mat-menu #menu="matMenu"> 
+                        <button mat-menu-item>
+                          <mat-icon>dialpad</mat-icon>
+                          <span>Redial</span>
+                        </button>
+                        <button mat-menu-item disabled>
+                          <mat-icon>voicemail</mat-icon>
+                          <span>Check voice mail</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>notifications_off</mat-icon>
+                          <span>Disable alerts</span>
+                        </button>
+                      </mat-menu>
+
             </div>
+
+            <div>
+             
 
 
         </div>
     </div>
 </div>
 
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
-  </mat-menu>
