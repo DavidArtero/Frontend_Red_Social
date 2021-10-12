@@ -27,15 +27,15 @@
                         <mat-icon style="cursor: pointer;vertical-align: top;">more_vert</mat-icon>
                     </span>
                       <mat-menu #menu="matMenu"> 
-                        <button mat-menu-item>
-                          <mat-icon>dialpad</mat-icon>
-                          <span>Redial</span>
+                        <button mat-menu-item disabled>
+                          <mat-icon><i class="material-icons">person_add_disabled</i></mat-icon>
+                          <span style="font-weight: 500;">Dejar de seguir</span>
                         </button>
                         <button mat-menu-item disabled>
                           <mat-icon>voicemail</mat-icon>
                           <span>Check voice mail</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item disabled>
                           <mat-icon>notifications_off</mat-icon>
                           <span>Disable alerts</span>
                         </button>
