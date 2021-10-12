@@ -27,7 +27,7 @@ import { ProfilePublicationComponent } from './components/profile/profilePublica
 import { ProfileFriendsComponent } from './components/profile/profileFriends/profileFriends.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AutoFocusDirectiveDirective } from './components/directives/auto-focus-directive.directive'; 
-
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { AutoFocusDirectiveDirective } from './components/directives/auto-focus-
     MatMenuModule,
     MatDialogModule,
     MatTabsModule,
-    FormsModule
+    MatIconModule
 
   ],
 
