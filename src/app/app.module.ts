@@ -29,6 +29,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AutoFocusDirectiveDirective } from './components/directives/auto-focus-directive.directive'; 
 import {MatIconModule} from '@angular/material/icon';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FilterPipe } from './components/pipes/friends-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProfileComponent,
     ProfilePublicationComponent,
     ProfileFriendsComponent,
-    AutoFocusDirectiveDirective
+    AutoFocusDirectiveDirective,
+    FilterPipe
+    
   ],
   imports: [
     BrowserModule,
