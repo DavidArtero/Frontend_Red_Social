@@ -125,37 +125,31 @@ export class ProfileFriendsComponent implements OnInit {
     alert("followed->" + userIdToUnfollow)
     console.log("array follows->",this.follows)
     console.log(this.follows.indexOf(userIdToUnfollow))
-    let index=0;
-    this.follows.forEach(follow => {
-      
-     if(follow.followed._id == userIdToUnfollow){
-       this.follows.splice(index,1)
-     }
-     index++;
-
-
-    });
 
 
 
-    // this._followService.deleteFollow(this.token, userIdToUnfollow).subscribe(
-    //   (response) => {
-    //     var search = this.follows.indexOf(userIdToUnfollow);
-    //     if (search != -1) {
-    //       this.follows.splice(search, 1);
-    //       alert("hello")
-    //       this.getCounters();
-    //     }
-    //   },
-    //   (error) => {
-    //     var errorMessage = <any>error;
-    //     console.log(errorMessage);
 
-    //     if (errorMessage != null) {
-    //       this.status = 'error';
-    //     }
-    //   }
-    // );
+    this._followService.deleteFollow(this.token, userIdToUnfollow).subscribe(
+      (response) => {
+        let index=0;
+        this.follows.forEach(follow => {
+
+         if(follow.followed._id == userIdToUnfollow){
+           this.follows.splice(index,1)
+         }
+         index++;
+    
+        });
+      },
+      (error) => {
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      }
+    );
   }
 
   getCounters(){

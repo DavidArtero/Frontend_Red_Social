@@ -27,9 +27,9 @@
                         <mat-icon style="cursor: pointer;vertical-align: top;">more_vert</mat-icon>
                     </span>
                       <mat-menu  #menu="matMenu"> 
-                        <button mat-menu-item>
+                        <button mat-menu-item (click) = "unfollowUser(follow.followed._id)">
                           <mat-icon><i class="material-icons">person_add_disabled</i></mat-icon>
-                          <span (click) = "unfollowUser(follow.followed._id)" style="font-weight: 500;">Dejar de seguir</span>
+                          <span  style="font-weight: 500;">Dejar de seguir</span>
                         </button>
                         <button mat-menu-item>
                           <mat-icon>voicemail</mat-icon>
