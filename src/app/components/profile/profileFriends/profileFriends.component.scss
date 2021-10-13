@@ -36,3 +36,10 @@
 .mat-menu-item:focus{
   outline: none;
 }
+
+.dotsDiv:active {
+  transform: scale(0.95);
+}
+.dotsDiv:hover{
+  background-color: gainsboro;
+}
