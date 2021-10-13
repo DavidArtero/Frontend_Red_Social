@@ -1,8 +1,13 @@
+<div>
+  <label for="exampleInput">Search Term</label>
+  <input type="text" [(ngModel)]="term"  class="form-control">
+</div>
+
 <!-- Seguidos -->
 <div style="margin-top: 80px; text-align: center; overflow: hidden;">
     <div class="card-data" style="place-content: center;">
 
-        <div *ngFor="let follow of follows" class="divUserFriends">
+        <div *ngFor="let follow of follows | filter: term" class="divUserFriends">
 
             <div class="secondDivUserFriends">
                 <div style="float: left;">

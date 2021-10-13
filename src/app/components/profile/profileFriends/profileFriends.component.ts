@@ -39,6 +39,7 @@ export class ProfileFriendsComponent implements OnInit {
   public noMore;
   public id;
   public isLoginUserProfile: Boolean;
+  public term;
 
   constructor(
     private _route: ActivatedRoute,
