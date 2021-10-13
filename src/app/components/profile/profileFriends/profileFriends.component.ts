@@ -38,7 +38,7 @@ export class ProfileFriendsComponent implements OnInit {
   public following;
   public noMore;
   public id;
-  public isLoginUserProfile:Boolean;
+  public isLoginUserProfile: Boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -60,7 +60,6 @@ export class ProfileFriendsComponent implements OnInit {
   ngOnInit(): void {
     console.log('Profile Publication Component cargado correctamente');
     this.loadPage();
-
   }
 
   loadPage() {
@@ -68,11 +67,9 @@ export class ProfileFriendsComponent implements OnInit {
       this.id = params['id'];
       this.getFollowingUsers(this.id, this.page);
 
-      if(this.identity._id == this.id){
+      if (this.identity._id == this.id) {
         this.isLoginUserProfile = true;
       }
-
-   
     });
   }
 
@@ -95,12 +92,12 @@ export class ProfileFriendsComponent implements OnInit {
             var arrayA = this.follows;
             var arrayB = response.follows;
             this.follows = arrayA.concat(arrayB);
-            console.log('RESPUESTA FOLLOWS', response);
+            //console.log('RESPUESTA FOLLOWS', response);
           }
           // alert(response.total);
           // alert(response.pages);
 
-          console.log(this.follows);
+          console.log("FOLLOWS->",this.follows);
           this.viewMore();
         } else {
           this.status = 'error';
@@ -123,4 +120,54 @@ export class ProfileFriendsComponent implements OnInit {
       console.log('noMore = true');
     }
   }
+
+  unfollowUser(userIdToUnfollow) {
+    alert("followed->" + userIdToUnfollow)
+    console.log("array follows->",this.follows)
+    console.log(this.follows.indexOf(userIdToUnfollow))
+    let index=0;
+    this.follows.forEach(follow => {
+      
+     if(follow.followed._id == userIdToUnfollow){
+       this.follows.splice(index,1)
+     }
+     index++;
+
+
+    });
+
+
+
+    // this._followService.deleteFollow(this.token, userIdToUnfollow).subscribe(
+    //   (response) => {
+    //     var search = this.follows.indexOf(userIdToUnfollow);
+    //     if (search != -1) {
+    //       this.follows.splice(search, 1);
+    //       alert("hello")
+    //       this.getCounters();
+    //     }
+    //   },
+    //   (error) => {
+    //     var errorMessage = <any>error;
+    //     console.log(errorMessage);
+
+    //     if (errorMessage != null) {
+    //       this.status = 'error';
+    //     }
+    //   }
+    // );
+  }
+
+  getCounters(){
+    this._userService.getCounters().subscribe(
+        response =>{
+            //Guardamos en stats la respuesta JSON
+            localStorage.setItem('stats', JSON.stringify(response));
+            this.status = 'success';
+        }, 
+        error=>{
+            console.log(error);
+        } 
+    )
+}
 }
