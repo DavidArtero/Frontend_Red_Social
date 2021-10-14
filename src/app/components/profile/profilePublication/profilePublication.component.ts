@@ -11,7 +11,6 @@ import { FollowService } from 'src/app/services/follow.service';
 import { GLOBAL } from 'src/app/services/global';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-import { dialogElementsUpdateProfilePic } from '../../dialogs/dialogElementsUpdateProfilePic.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
@@ -28,7 +27,6 @@ import * as $ from 'jquery';
     FollowService,
     MatMenuModule,
     MatDialogModule,
-    dialogElementsUpdateProfilePic,
     PublicationService,
   ],
 })

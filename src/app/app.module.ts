@@ -10,7 +10,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //Cargar componentes
 import { AppComponent } from './app.component';
@@ -30,6 +30,9 @@ import { AutoFocusDirectiveDirective } from './components/directives/auto-focus-
 import {MatIconModule} from '@angular/material/icon';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FilterPipe } from './components/pipes/friends-filter.pipe';
+import { GreetingsComponent } from './components/dialogs/greetings/greetings.component';
+
+
 
 
 @NgModule({
@@ -46,7 +49,8 @@ import { FilterPipe } from './components/pipes/friends-filter.pipe';
     ProfilePublicationComponent,
     ProfileFriendsComponent,
     AutoFocusDirectiveDirective,
-    FilterPipe
+    FilterPipe,
+    GreetingsComponent,
     
   ],
   imports: [
@@ -61,7 +65,9 @@ import { FilterPipe } from './components/pipes/friends-filter.pipe';
     MatDialogModule,
     MatTabsModule,
     MatIconModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgbModalModule,
+    
 
   ],
 
@@ -70,6 +76,7 @@ import { FilterPipe } from './components/pipes/friends-filter.pipe';
 
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: []
 
   
 })

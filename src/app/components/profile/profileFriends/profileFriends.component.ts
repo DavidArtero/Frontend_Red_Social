@@ -6,13 +6,15 @@ import { UserService } from 'src/app/services/user.service';
 import { FollowService } from 'src/app/services/follow.service';
 import { GLOBAL } from 'src/app/services/global';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDialogModule } from '@angular/material/dialog';
-import { dialogElementsUpdateProfilePic } from '../../dialogs/dialogElementsUpdateProfilePic.component';
+import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
 import { ProfileComponent } from '../profile.component';
 import * as $ from 'jquery';
+import { GreetingsComponent } from '../../dialogs/greetings/greetings.component';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'profileFriends',
@@ -46,8 +48,9 @@ export class ProfileFriendsComponent implements OnInit {
     private _router: Router,
     private _userService: UserService,
     private _followService: FollowService,
-    public dialog: MatDialog,
-    private _publicationService: PublicationService
+    private _publicationService: PublicationService,
+    private matDialog: MatDialog
+    
   ) {
     this.title = 'Perfil';
     this.identity = this._userService.getIdentity();
@@ -59,9 +62,12 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
     console.log('Profile Publication Component cargado correctamente');
-    this.loadPage();
+    this.loadPage();    
   }
+
+
 
   loadPage() {
     this._route.params.subscribe((params) => {
@@ -74,8 +80,13 @@ export class ProfileFriendsComponent implements OnInit {
     });
   }
 
+  
+
   modalUpdateProfile = false;
 
+
+   
+  
   getFollowingUsers(id, page, adding = false) {
     this._followService.getFollowing(this.token, id, page).subscribe(
       (response) => {
@@ -98,7 +109,7 @@ export class ProfileFriendsComponent implements OnInit {
           // alert(response.total);
           // alert(response.pages);
 
-          console.log("FOLLOWS->",this.follows);
+          // console.log("FOLLOWS->",this.follows);
           this.viewMore();
         } else {
           this.status = 'error';
@@ -123,35 +134,56 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
   unfollowUser(userIdToUnfollow) {
-    alert("followed->" + userIdToUnfollow)
-    console.log("array follows->",this.follows)
-    console.log(this.follows.indexOf(userIdToUnfollow))
-
-
-
-
-    this._followService.deleteFollow(this.token, userIdToUnfollow).subscribe(
-      (response) => {
-        let index=0;
-        this.follows.forEach(follow => {
-
-         if(follow.followed._id == userIdToUnfollow){
-           this.follows.splice(index,1)
-         }
-         index++;
+    console.log("followed->" + userIdToUnfollow)
     
-        });
-      },
-      (error) => {
-        var errorMessage = <any>error;
-        console.log(errorMessage);
+    
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: ["Cancelar", "Eliminar"],
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
 
-        if (errorMessage != null) {
-          this.status = 'error';
-        }
+        this._followService.deleteFollow(this.token, userIdToUnfollow).subscribe(
+          (response) => {
+            let index=0;
+            this.follows.forEach(follow => {
+    
+             if(follow.followed._id == userIdToUnfollow){
+               console.log("ahora splice")
+               this.follows.splice(index,1)
+             }
+             index++;
+        
+            });
+          },
+          (error) => {
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+    
+            if (errorMessage != null) {
+              this.status = 'error';
+            }
+          }
+        );
+        setTimeout(()=>{                           // <<<---using ()=> syntax
+          swal( "Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+      }, 2000);
+        
+      } else {
+        swal("Your imaginary file is safe!");
       }
-    );
+    });
+
+ 
   }
+
+ 
 
   getCounters(){
     this._userService.getCounters().subscribe(
@@ -165,4 +197,35 @@ export class ProfileFriendsComponent implements OnInit {
         } 
     )
 }
+
+
+//Modal
+onOpenDialogClick(){
+  let dialogRef = this.matDialog.open(GreetingsComponent,
+    {
+      data:{
+        age:10,
+        name:"david"
+      },
+      //width: "500px",
+      //height:"500px",
+      // position:{
+      //   top:"0px",
+      //   left:"0px"
+      // },
+      disableClose:true,
+      hasBackdrop:true
+    });
+    dialogRef.afterClosed().subscribe(
+      result=>{
+        if(result) {
+          // do confirmation actions
+          console.log(JSON.stringify(result));
+        }
+       
+      }
+    )
+}
+
+
 }

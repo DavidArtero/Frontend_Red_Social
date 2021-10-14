@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { UserService } from './services/user.service';
 import { GLOBAL } from './services/global'
+import { MatDialog } from '@angular/material/dialog';
+import { GreetingsComponent } from './components/dialogs/greetings/greetings.component';
 
 
 @Component({
@@ -19,7 +21,8 @@ export class AppComponent implements OnInit, DoCheck {
   constructor(
     private _userService: UserService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private matDialog: MatDialog
     ){
       this.title = 'Red Social'
       this.url = GLOBAL.url;
@@ -44,7 +47,28 @@ export class AppComponent implements OnInit, DoCheck {
     }
 
 
-
+    onOpenDialogClick(){
+      let dialogRef = this.matDialog.open(GreetingsComponent,
+        {
+          data:{
+            age:10,
+            name:"david"
+          },
+          //width: "500px",
+          //height:"500px",
+          // position:{
+          //   top:"0px",
+          //   left:"0px"
+          // },
+          disableClose:true,
+          hasBackdrop:true
+        });
+        dialogRef.afterClosed().subscribe(
+          result=>{
+            alert(result.name);
+          }
+        )
+    }
 }
 
 

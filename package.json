@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "@popperjs/core": "^2.9.2",
+    "@types/jquery": "^3.5.7",
     "angular-material": "^1.2.3",
     "bootstrap": "4.0",
     "font-awesome": "^4.7.0",
@@ -35,6 +36,8 @@
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.1.8",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
