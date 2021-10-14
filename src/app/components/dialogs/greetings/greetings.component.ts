@@ -10,7 +10,7 @@ export class GreetingsComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA)public data: 
                   {age:number, name:string},
-                  private matDialogRef:MatDialogRef<GreetingsComponent>) { }
+                  public matDialogRef:MatDialogRef<GreetingsComponent>) { }
 
   ngOnInit(): void {
     
