@@ -1,16 +1,20 @@
 
 
-<div class="col-lg-8">
+<div class="col-lg-12" style="margin-top:50px; display:inline-flex; align-items: center;">
 
  
-  
-  <label for="exampleInput">Buscador</label>
-  <input type="text" [(ngModel)]="term"  class="form-control">
+
+    <i class="material-icons icon">person_search</i>
+    <input type="text" [(ngModel)]="term"  class="form-control input-field" style="width: 200px;"> 
+
+
+
+
 </div>
 
 <!-- Seguidos -->
-<div style="margin-top: 60px; text-align: center; overflow: hidden;">
-    <div class="card-data" style="place-content: center;">
+<div style="margin-top: 40px; text-align: center; overflow: hidden;">
+    <div class="card-data" style="place-content: center; min-height: 300px;">
 
         <div *ngFor="let follow of follows 
         | filter: term

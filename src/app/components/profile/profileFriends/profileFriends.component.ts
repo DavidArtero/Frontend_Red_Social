@@ -155,18 +155,11 @@ export class ProfileFriendsComponent implements OnInit {
             this.follows.forEach(follow => {
     
              if(follow.followed._id == userIdToUnfollow){
-               console.log("ahora splice")
-               console.log("before",this.follows)
                this.follows.splice(index,1)
                //refresh page by assign array without deleted
                let copyFollows = {};
                copyFollows = Object.assign([], this.follows);
                this.follows = Object.assign([],copyFollows)
-
-               console.log("after",copyFollows)
-              
-               
-              
              }
              index++;
         
