@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../../models/user';
 import { Follow } from '../../../models/follow';
@@ -21,6 +21,7 @@ import swal from 'sweetalert';
   templateUrl: './profileFriends.component.html',
   styleUrls: ['./profileFriends.component.scss'],
   providers: [UserService, FollowService],
+  
 })
 export class ProfileFriendsComponent implements OnInit {
   public title: string;
@@ -49,7 +50,8 @@ export class ProfileFriendsComponent implements OnInit {
     private _userService: UserService,
     private _followService: FollowService,
     private _publicationService: PublicationService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+
     
   ) {
     this.title = 'Perfil';
@@ -154,7 +156,13 @@ export class ProfileFriendsComponent implements OnInit {
     
              if(follow.followed._id == userIdToUnfollow){
                console.log("ahora splice")
+               console.log("before",this.follows)
                this.follows.splice(index,1)
+               
+               console.log("after",this.follows)
+              
+               
+              
              }
              index++;
         
@@ -169,11 +177,11 @@ export class ProfileFriendsComponent implements OnInit {
             }
           }
         );
-        setTimeout(()=>{                           // <<<---using ()=> syntax
+                      
           swal( "Poof! Your imaginary file has been deleted!", {
             icon: "success",
           });
-      }, 2000);
+    
         
       } else {
         swal("Your imaginary file is safe!");
@@ -200,32 +208,32 @@ export class ProfileFriendsComponent implements OnInit {
 
 
 //Modal
-onOpenDialogClick(){
-  let dialogRef = this.matDialog.open(GreetingsComponent,
-    {
-      data:{
-        age:10,
-        name:"david"
-      },
-      //width: "500px",
-      //height:"500px",
-      // position:{
-      //   top:"0px",
-      //   left:"0px"
-      // },
-      disableClose:true,
-      hasBackdrop:true
-    });
-    dialogRef.afterClosed().subscribe(
-      result=>{
-        if(result) {
-          // do confirmation actions
-          console.log(JSON.stringify(result));
-        }
+// onOpenDialogClick(){
+//   let dialogRef = this.matDialog.open(GreetingsComponent,
+//     {
+//       data:{
+//         age:10,
+//         name:"david"
+//       },
+//       //width: "500px",
+//       //height:"500px",
+//       // position:{
+//       //   top:"0px",
+//       //   left:"0px"
+//       // },
+//       disableClose:true,
+//       hasBackdrop:true
+//     });
+//     dialogRef.afterClosed().subscribe(
+//       result=>{
+//         if(result) {
+//           // do confirmation actions
+//           console.log(JSON.stringify(result));
+//         }
        
-      }
-    )
-}
+//       }
+//     )
+// }
 
 
 }

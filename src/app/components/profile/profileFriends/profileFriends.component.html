@@ -12,7 +12,9 @@
 <div style="margin-top: 60px; text-align: center; overflow: hidden;">
     <div class="card-data" style="place-content: center;">
 
-        <div *ngFor="let follow of follows | filter: term" class="divUserFriends">
+        <div *ngFor="let follow of follows 
+        | filter: term
+        " class="divUserFriends">
 
             <div class="secondDivUserFriends">
                 <div style="float: left;">
