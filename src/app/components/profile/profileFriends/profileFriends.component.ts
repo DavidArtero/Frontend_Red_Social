@@ -112,7 +112,7 @@ export class ProfileFriendsComponent implements OnInit {
           // alert(response.total);
           // alert(response.pages);
 
-          // console.log("FOLLOWS->",this.follows);
+           console.log("FOLLOWS->",this.follows);
           this.viewMore();
         } else {
           this.status = 'error';
@@ -203,6 +203,13 @@ export class ProfileFriendsComponent implements OnInit {
         } 
     )
 }
+
+viewUserProfile(id){
+  alert("user profile" + id)
+  this._router.navigate(['/perfil', id]);
+}
+
+
 
 
 //Modal
