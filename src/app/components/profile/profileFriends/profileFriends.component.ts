@@ -158,8 +158,12 @@ export class ProfileFriendsComponent implements OnInit {
                console.log("ahora splice")
                console.log("before",this.follows)
                this.follows.splice(index,1)
-               
-               console.log("after",this.follows)
+               //refresh page by assign array without deleted
+               let copyFollows = {};
+               copyFollows = Object.assign([], this.follows);
+               this.follows = Object.assign([],copyFollows)
+
+               console.log("after",copyFollows)
               
                
               
