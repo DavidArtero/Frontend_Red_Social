@@ -205,7 +205,8 @@ export class ProfileFriendsComponent implements OnInit {
 }
 
 viewUserProfile(id){
-  alert("user profile" + id)
+  //Refrescar al hacer el navigate
+  this._router.routeReuseStrategy.shouldReuseRoute = () => false;
   this._router.navigate(['/perfil', id]);
 }
 
