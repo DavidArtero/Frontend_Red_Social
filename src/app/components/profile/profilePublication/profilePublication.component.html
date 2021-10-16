@@ -37,6 +37,10 @@
 
                     <p class="card-text">{{ publication.text }}</p>
                 </div>
+
+                <div *ngIf="publication.file.length>4"  style="padding-bottom: 15px; text-align: center;">
+                    <img width="230px" height="auto" src="{{ url + 'get-image-pub/' + publication.file }}">
+                  </div>
             </div>
             <br />
         </div>
