@@ -44,30 +44,45 @@ export class SidebarComponent implements OnInit{
         this.stats = this._userService.getStats();
       }
 
-      onSubmit(form){
+      onSubmit(form, $event){
           //console.log(this.publication);
           this._publicationService.addPublication(this.token, this.publication).subscribe(
               response=>{
                   if(response.publication){
+                  
                      
-
-                      //Subir imagen
+                    if(this.filesToUpload && response.publication.file !=null){
+                        console.log("response.file->> " ,response.publication.file)
+                        alert("hello")
+                        //Subir imagen
                       this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response.publication._id, [], this.filesToUpload, this.token, 'image')
-                                                         .then((result:any)=>{
-                                                            this.publication.file = result.image;
+                      .then((result:any)=>{
+                         this.publication.file = result.image;
 
-                                                            this.publication = response.publication;
-                                                            this.status = 'success';
-                                                            this.getCounters();
-                                                            form.reset();
-                                                            this._router.navigate(['/timeline']);
-                                                         });
+                         this.publication = response.publication;
+                         this.status = 'success';
+                         this.getCounters();
+                         form.reset();
+                         this.filesToUpload = null;
+                         
+                         this._router.navigate(['/timeline']);
+                         this.sended.emit({send:'true'});
+                         console.log(this.filesToUpload)
+                      });
 
-                
+                    }else{
+                        this.status = 'success';
+                         this.getCounters();
+                         form.reset();
+                         this.sended.emit({send:'true'});
+                    }
 
 
                   }else{
                       this.status = 'error';
+                      form.reset();
+                      this._router.navigate(['/timeline']);
+                      this.sended.emit({send:'true'});
                   }
               },
               error=>{
@@ -85,6 +100,7 @@ export class SidebarComponent implements OnInit{
       //Subida archivos publicaciones
       fileChangeEvent(fileInput:any){
           this.filesToUpload = <Array<File>>fileInput.target.files;
+          console.log(this.filesToUpload)
       }
 
       getCounters(){
