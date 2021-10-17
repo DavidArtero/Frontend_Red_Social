@@ -20,7 +20,8 @@ const routes: Routes = [
   {path: 'gente' , component: UsersComponent},
   {path: 'timeline' , component: TimelineComponent},
   {path: 'perfil/:id' , component: ProfileComponent},
-  {path: '**' , component: HomeComponent}
+ //{path: '**' , component: HomeComponent},
+ 
 ];
 
 @NgModule({

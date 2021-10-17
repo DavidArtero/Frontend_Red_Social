@@ -31,11 +31,21 @@ import {MatIconModule} from '@angular/material/icon';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FilterPipe } from './components/pipes/friends-filter.pipe';
 import { GreetingsComponent } from './components/dialogs/greetings/greetings.component';
+import { MessagesRoutingModule } from './messages/messages-routing.module';
+import { MessagesModule } from './messages/messages.module';
+import { Routes } from '@angular/router';
 
 
-
+const routes: Routes = [
+  {
+  path: 'mensajes', loadChildren: () =>
+  import('./messages/messages.module').then(m => m.MessagesModule)
+  },
+ 
+];
 
 @NgModule({
+  
   declarations: [
     AppComponent,
     LoginComponent,
@@ -67,9 +77,11 @@ import { GreetingsComponent } from './components/dialogs/greetings/greetings.com
     MatIconModule,
     Ng2SearchPipeModule,
     NgbModalModule,
+    MessagesModule
     
 
   ],
+  
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
 
