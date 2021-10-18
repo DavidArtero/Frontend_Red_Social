@@ -10,6 +10,7 @@ import { SendedComponent } from "./components/sended/sended.component";
 import { RouterModule, Routes } from "@angular/router";
 
 import { MessagesRoutingModule } from "./messages-routing.module";
+import { MomentModule } from "ngx-moment";
 
 
 
@@ -23,7 +24,8 @@ import { MessagesRoutingModule } from "./messages-routing.module";
     imports:[
         CommonModule,
         FormsModule,
-        MessagesRoutingModule
+        MessagesRoutingModule,
+        MomentModule
     ],
 
     exports:[
