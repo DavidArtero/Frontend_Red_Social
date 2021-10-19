@@ -19,7 +19,7 @@ import { UploadService } from 'src/app/services/upload.service';
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss'],
-    providers: [UserService, FollowService, MatMenuModule, MatDialogModule, PublicationService],
+    providers: [UserService, FollowService, MatMenuModule, MatDialogModule, PublicationService, UploadService],
   })
 
 
@@ -40,6 +40,7 @@ import { UploadService } from 'src/app/services/upload.service';
     public publications: Publication[];
     public itsMyOwnPage:Boolean;
     public load:boolean;
+   
     
 
     constructor(
@@ -70,8 +71,9 @@ import { UploadService } from 'src/app/services/upload.service';
     
     ngOnInit(): void {
         this.loadPage();
-        console.log("user->", this.user)
-       
+     
+      
+
     }
 
     loadPage(){
@@ -131,36 +133,37 @@ import { UploadService } from 'src/app/services/upload.service';
         x.style.width = "64px";
       }    
       
+      uploadFile =[];
       
-     editBackgroundProfile(){
-
+     async editBackgroundProfile(){
+      
         //swal
-        Swal.fire({
-            title: "¿Estás seguro?",
-            text: "Una vez dejes de seguira este usuario dejarás de ver sus publicaciones",
-            icon: "warning",
-            // iconColor: '#000000',
-            showConfirmButton: true,
-            confirmButtonText:'Dejar de seguir',
-            showCancelButton: true,
-            cancelButtonText: 'Cancelar',
-      
-          })
-          .then((result) => {
-            if (result.isConfirmed) {
-      
-
-                            
-                Swal.fire( 
-                  {text:"Ya no sigues a este usuario",
-                  icon: "success",
-                });
-          
-              
-            } else {
-              // swal("Your imaginary file is safe!");
+        const { value: file } = await Swal.fire({
+            title: 'Selecciona una imagen',
+            input: 'file',
+            inputAttributes: {
+              'accept': 'image/*',
+              'aria-label': 'Upload your profile picture'
             }
-          });
+          })
+          
+          if (file) {
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                this.onSubmit();
+              Swal.fire({
+                title: 'Your uploaded picture',
+                imageUrl : event.target["result"],
+                //GLOBAL.url+ "upload-background-image-user/" + this.user._id,
+                imageAlt: 'The uploaded picture'
+              })
+            }
+           
+            reader.readAsDataURL(file)
+            this.uploadFile.push(file)
+            console.log(this.uploadFile)
+          }
+       
      } 
 
 
@@ -170,18 +173,18 @@ import { UploadService } from 'src/app/services/upload.service';
                 if(!response.user){
                     this.status = 'error';
                 }else{
+                    console.log("subscribe user->",this.user)
                     this.status = 'success';
                     localStorage.setItem('identity', JSON.stringify(this.user));
                     this.identity = this.user;
 
                     //Subida de imagen de usuario
-                    this._uploadService.makeFileRequest(this.url+'upload-image-user/'+this.user._id, [], this.filesToUpload, this.token, 'image')
+                    this._uploadService.makeFileRequest(this.url+'upload-background-image-user/'+this.user._id, [], this.uploadFile, this.token, 'image')
                         .then((result:any) =>{
-                            console.log(result);
-                            this.user.image = result.user.image;
+                            this.uploadFile = [];
+                            this.user.backgroundImage = result.user.backgroundImage;
                             localStorage.setItem('Identity', JSON.stringify(this.user));
                         });
-
                 }
             },
             error => {
@@ -195,10 +198,4 @@ import { UploadService } from 'src/app/services/upload.service';
         );
     }
 
-    public filesToUpload: Array<File>;
-    fileChangeEvent(fileInput:any){
-        this.filesToUpload = <Array<File>> fileInput.target.files;
-        
-
-    }
   }

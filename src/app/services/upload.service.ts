@@ -15,6 +15,8 @@ export class UploadService{
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
 
+            console.log(files)
+
             for(var i = 0; i<files.length;i++){
                 formData.append(name, files[i], files[i].name);
             }

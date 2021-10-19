@@ -14,7 +14,7 @@ import { ProfileComponent } from '../profile.component';
 import * as $ from 'jquery';
 import { GreetingsComponent } from '../../dialogs/greetings/greetings.component';
 import Swal from 'sweetalert2'
-import { BLACK_ON_WHITE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
+
 
 
 
