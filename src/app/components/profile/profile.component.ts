@@ -66,6 +66,7 @@ import * as $ from 'jquery';
     
     ngOnInit(): void {
         this.loadPage();
+        console.log("user->", this.user)
        
     }
 
