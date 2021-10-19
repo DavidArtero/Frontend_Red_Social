@@ -37,19 +37,19 @@
           cursor: pointer;
           right: 14%;
           top: 85px;">
-          <div class="editBackgroundButton" style="height: 30px; width: 117px; background-color: white; text-align: center; 
+          <div class="editBackgroundButton" [matMenuTriggerFor]="backgroundBelowMenu" style="height: 30px; width: 117px; background-color: white; text-align: center; 
           border-radius: 10px; ">
               <span style=" position: relative;
                   top: 19%;
                   transform: translateY(-50%);
                   cursor: pointer;">
                   <i class="fa fa-camera" style="font-size:19px"></i>
-                  <a href="" 
+                  <span  
                   style="color: black;
                   font-weight: 500;
                   vertical-align: text-bottom;
                   margin-left:3px">
-                  Editar foto </a> 
+                  Editar foto </span> 
                   </span> 
           </div>
       </div>
@@ -97,6 +97,21 @@
       </button>
     </div>
   </mat-menu>
+
+    <!-- menú background foto-->
+    <mat-menu #backgroundBelowMenu="matMenu" yPosition="below">
+      <button mat-menu-item style="font-size: 0.9375rem; font-weight: 500">
+        <i data-visualcompletion="cass-image" class="updateProfilePicture" style="background-position: 0px -84px"></i>
+        Seleccionar foto de portada
+      </button>
+      <div style="display: inline-flex">
+        <button mat-menu-item mat-button style="font-size: 0.9375rem; font-weight: 500">
+          <i data-visualcompletion="cass-image" class="updateProfilePicture" style="background-position: 0px -42px"></i>
+         Eliminar foto de portada
+        </button>
+      </div>
+    </mat-menu>
+  
 
 
 

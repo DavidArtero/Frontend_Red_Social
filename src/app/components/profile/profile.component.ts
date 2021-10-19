@@ -11,6 +11,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
 import * as $ from 'jquery';
+import Swal from 'sweetalert2';
+import { UploadService } from 'src/app/services/upload.service';
 
 
 @Component({
@@ -38,6 +40,7 @@ import * as $ from 'jquery';
     public publications: Publication[];
     public itsMyOwnPage:Boolean;
     public load:boolean;
+    
 
     constructor(
         private _route: ActivatedRoute,
@@ -45,7 +48,8 @@ import * as $ from 'jquery';
         private _userService: UserService,
         private _followService: FollowService,
         public dialog: MatDialog,
-        private _publicationService: PublicationService
+        private _publicationService: PublicationService,
+        private _uploadService: UploadService
         
     ){
         this.title = 'Perfil';
@@ -128,5 +132,73 @@ import * as $ from 'jquery';
       }    
       
       
+     editBackgroundProfile(){
 
+        //swal
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Una vez dejes de seguira este usuario dejarás de ver sus publicaciones",
+            icon: "warning",
+            // iconColor: '#000000',
+            showConfirmButton: true,
+            confirmButtonText:'Dejar de seguir',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+      
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+      
+
+                            
+                Swal.fire( 
+                  {text:"Ya no sigues a este usuario",
+                  icon: "success",
+                });
+          
+              
+            } else {
+              // swal("Your imaginary file is safe!");
+            }
+          });
+     } 
+
+
+     onSubmit(){
+        this._userService.updateUser(this.user).subscribe(
+            response =>{
+                if(!response.user){
+                    this.status = 'error';
+                }else{
+                    this.status = 'success';
+                    localStorage.setItem('identity', JSON.stringify(this.user));
+                    this.identity = this.user;
+
+                    //Subida de imagen de usuario
+                    this._uploadService.makeFileRequest(this.url+'upload-image-user/'+this.user._id, [], this.filesToUpload, this.token, 'image')
+                        .then((result:any) =>{
+                            console.log(result);
+                            this.user.image = result.user.image;
+                            localStorage.setItem('Identity', JSON.stringify(this.user));
+                        });
+
+                }
+            },
+            error => {
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+
+                if(errorMessage != null){
+                    this.status = 'error'
+                }
+            }
+        );
+    }
+
+    public filesToUpload: Array<File>;
+    fileChangeEvent(fileInput:any){
+        this.filesToUpload = <Array<File>> fileInput.target.files;
+        
+
+    }
   }

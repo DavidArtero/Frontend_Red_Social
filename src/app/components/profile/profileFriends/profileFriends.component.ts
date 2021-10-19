@@ -13,7 +13,8 @@ import { Publication } from 'src/app/models/publication';
 import { ProfileComponent } from '../profile.component';
 import * as $ from 'jquery';
 import { GreetingsComponent } from '../../dialogs/greetings/greetings.component';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
+import { BLACK_ON_WHITE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
 
 
 
@@ -138,17 +139,21 @@ export class ProfileFriendsComponent implements OnInit {
 
   unfollowUser(userIdToUnfollow) {
     console.log("followed->" + userIdToUnfollow)
-    
-    
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+          
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Una vez dejes de seguira este usuario dejarás de ver sus publicaciones",
       icon: "warning",
-      buttons: ["Cancelar", "Eliminar"],
-      dangerMode: true,
+      // iconColor: '#000000',
+      showConfirmButton: true,
+      confirmButtonText:'Dejar de seguir',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+
     })
-    .then((willDelete) => {
-      if (willDelete) {
+    .then((result) => {
+      if (result.isConfirmed) {
 
         this._followService.deleteFollow(this.token, userIdToUnfollow).subscribe(
           (response) => {
@@ -176,13 +181,14 @@ export class ProfileFriendsComponent implements OnInit {
           }
         );
                       
-          swal( "Poof! Your imaginary file has been deleted!", {
+          Swal.fire( 
+            {text:"Ya no sigues a este usuario",
             icon: "success",
           });
     
         
       } else {
-        swal("Your imaginary file is safe!");
+        // swal("Your imaginary file is safe!");
       }
     });
 
