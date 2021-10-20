@@ -141,33 +141,88 @@ import { UploadService } from 'src/app/services/upload.service';
         const { value: file } = await Swal.fire({
             title: 'Selecciona una imagen',
             input: 'file',
+            showCloseButton: true,
             inputAttributes: {
               'accept': 'image/*',
               'aria-label': 'Upload your profile picture'
             }
           })
           
-          if (file) {
+         
+          if (file && (file.name.includes('.jpg') || file.name.includes('.png') || file.name.includes('.gif') || file.name.includes('.jpeg')) ) {
             const reader = new FileReader()
             reader.onload = (e) => {
-                this.onSubmit();
+                this.onSubmit(true);
               Swal.fire({
-                title: 'Your uploaded picture',
+                title: 'Has modificado tu foto de portada',
                 imageUrl : event.target["result"],
                 //GLOBAL.url+ "upload-background-image-user/" + this.user._id,
                 imageAlt: 'The uploaded picture'
               })
             }
            
-            reader.readAsDataURL(file)
-            this.uploadFile.push(file)
-            console.log(this.uploadFile)
+            reader.readAsDataURL(file);
+            this.uploadFile.push(file);
+          }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'No se ha podido cambiar tu imagen de portada',
+                text: 'Adjunta una imagen',
+               
+              })
+          }
+       
+     } 
+
+     async editImageProfile(){
+      
+        //swal
+        const { value: file } = await Swal.fire({
+            title: 'Selecciona una imagen',
+            input: 'file',
+            showCloseButton: true,
+            inputAttributes: {
+              'accept': 'image/*',
+              'aria-label': 'Upload your profile picture'
+            }
+          })
+          
+         
+          if (file && (file.name.includes('.jpg') || file.name.includes('.png') || file.name.includes('.gif') || file.name.includes('.jpeg')) ) {
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                this.onSubmit(false);
+              Swal.fire({
+                title: 'Has modificado tu foto de perfil',
+                imageUrl : event.target["result"],
+                //GLOBAL.url+ "upload-background-image-user/" + this.user._id,
+                imageAlt: 'The uploaded picture'
+              })
+            }
+           
+            reader.readAsDataURL(file);
+            this.uploadFile.push(file);
+          }else {
+            Swal.fire({
+                icon: 'error',
+                title: 'No se ha podido cambiar tu imagen perfil',
+                text: 'Adjunta una imagen',
+               
+              })
           }
        
      } 
 
 
-     onSubmit(){
+     onSubmit(background){
+         let route = "";
+         if(background == true){
+              route = "upload-background-image-user/"
+            }else{
+                route = "upload-image-user/"
+            }
+
+     
         this._userService.updateUser(this.user).subscribe(
             response =>{
                 if(!response.user){
@@ -179,11 +234,15 @@ import { UploadService } from 'src/app/services/upload.service';
                     this.identity = this.user;
 
                     //Subida de imagen de usuario
-                    this._uploadService.makeFileRequest(this.url+'upload-background-image-user/'+this.user._id, [], this.uploadFile, this.token, 'image')
+                    this._uploadService.makeFileRequest(this.url+route+this.user._id, [], this.uploadFile, this.token, 'image')
                         .then((result:any) =>{
                             this.uploadFile = [];
+                            if(background == true)
                             this.user.backgroundImage = result.user.backgroundImage;
-                            localStorage.setItem('Identity', JSON.stringify(this.user));
+                            else{
+                            this.user.image = result.user.image;
+                            }
+                            localStorage.setItem('identity', JSON.stringify(this.user));
                         });
                 }
             },
@@ -196,6 +255,7 @@ import { UploadService } from 'src/app/services/upload.service';
                 }
             }
         );
-    }
+     
+ }
 
   }
