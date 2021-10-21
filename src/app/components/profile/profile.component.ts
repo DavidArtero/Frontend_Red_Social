@@ -201,7 +201,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
 
       setTimeout(()=>{                          
-        this.reloadComponent();
+       this.reloadComponent();
     }, 1000);
      
       

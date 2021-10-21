@@ -37,6 +37,7 @@ export class TimelineComponent implements OnInit {
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
     this.page = 1;
+    this.pages = 1;
   }
 
   ngOnInit(): void {
@@ -50,34 +51,36 @@ export class TimelineComponent implements OnInit {
   getPublications(page, adding = false) {
     this._publicationService.getPublications(this.token, page).subscribe(
       (response) => {
+
+      
         if (response.publications) {
+
          // console.log(response.publications.user.file)
           this.total = response.total_items;
           this.pages = response.pages;
           this.itemsPerPage = response.items_per_page;
-          console.log(response.publications[1].file)
-          console.log(typeof(response.publications[1].file))
-    
-          if (!adding) {
-            console.log("!adding")
-            this.publications = response.publications;
-          } else {
-            var arrayA = this.publications;
-            var arrayB = response.publications;
-            this.publications = arrayA.concat(arrayB);
-            
-              //scroll down
-              $('html').animate(
-                { scrollTop: $('html').prop('scrollHeight') },
-                500
-              );
-
-          }
+          // console.log(response.publications[1].file)
+          // console.log(typeof(response.publications[1].file))
+            if (!adding) {
+                           
+              this.publications = response.publications;
+              console.log(this.publications.length)
+              
+            } else {
+             
+              var arrayA = this.publications;
+              var arrayB = response.publications;
+              this.publications = arrayA.concat(arrayB);
+              
+                //scroll down
+                $('html').animate(
+                  { scrollTop: $('html').prop('scrollHeight') },
+                  500
+                );
+            }
 
           //If user try other url
-          if (page > this.pages) {
-            //this._router.navigate(['/home']);
-          }
+         
         } else {
           this.status = 'error';
         }
@@ -96,11 +99,12 @@ export class TimelineComponent implements OnInit {
 
   public noMore = false;
   viewMore(){
+    
        console.log("this.page->" + this.page);
        console.log("this.total->" + (this.pages));
       
           this.page = this.page+1;
-          if(this.page == this.pages){
+          if(this.page >= this.pages){
             this.noMore = true;
             console.log("noMore = true")
             
