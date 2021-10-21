@@ -123,7 +123,7 @@ export class SidebarComponent implements OnInit{
         @Output() sended = new EventEmitter();
 
         sendPublication(event){
-            console.log(event);
+            alert("evento sendPublication")
             this.sended.emit({send:'true'});
         }
     

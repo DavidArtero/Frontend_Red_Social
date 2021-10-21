@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../../models/user';
 import { Follow } from '../../../models/follow';
@@ -217,35 +217,6 @@ viewUserProfile(id){
 }
 
 
-
-
-//Modal
-// onOpenDialogClick(){
-//   let dialogRef = this.matDialog.open(GreetingsComponent,
-//     {
-//       data:{
-//         age:10,
-//         name:"david"
-//       },
-//       //width: "500px",
-//       //height:"500px",
-//       // position:{
-//       //   top:"0px",
-//       //   left:"0px"
-//       // },
-//       disableClose:true,
-//       hasBackdrop:true
-//     });
-//     dialogRef.afterClosed().subscribe(
-//       result=>{
-//         if(result) {
-//           // do confirmation actions
-//           console.log(JSON.stringify(result));
-//         }
-       
-//       }
-//     )
-// }
 
 
 }
