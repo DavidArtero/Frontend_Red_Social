@@ -96,6 +96,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         if (response.user) {
           console.log(response);
           this.user = response.user;
+          //alert(this.user.backgroundImage);
 
           if (response.following && response.following._id) {
             this.following = true;
@@ -199,14 +200,9 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       reader.readAsDataURL(file);
       this.uploadFile.push(file);
 
-
-      setTimeout(()=>{                          
-       this.reloadComponent();
-    }, 1000);
-     
-      
-
-     
+      setTimeout(() => {
+        this.reloadComponent();
+      }, 1000);
     } else {
       Swal.fire({
         icon: 'error',
@@ -218,8 +214,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   reloadComponent() {
     this._router.routeReuseStrategy.shouldReuseRoute = () => false;
     this._router.onSameUrlNavigation = 'reload';
-    this._router.navigate(['/perfil',this.user._id]);
-}
+    this._router.navigate(['/perfil', this.user._id]);
+  }
 
   //Output
   @Output() sended = new EventEmitter();
@@ -271,5 +267,57 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         }
       }
     );
+  }
+
+  updateBackgroundImage(background) {
+   
+    Swal.fire({
+      title: 'Seguro que quieres eliminar la imagen?',
+      showCancelButton: true,
+      confirmButtonText: 'Elimnar',
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        if(background){
+          var fotoAeliminar = this.user.backgroundImage;
+          this.user.backgroundImage = null;
+        }else{
+          var fotoAeliminar = this.user.image;
+          this.user.image = null;
+        }
+        
+        console.log(this.user)
+
+        this._userService.updateUser(this.user).subscribe(
+          response =>{
+              if(!response.user){
+                  this.status = 'error';
+              }else{
+                  this.status = 'success';
+                  localStorage.setItem('identity', JSON.stringify(this.user));
+                  this.identity = this.user;
+
+                  //Borrar de imagen de usuario
+                  this._userService.removeImage(fotoAeliminar)
+              }
+          },
+          error => {
+              var errorMessage = <any>error;
+              console.log(errorMessage);
+
+              if(errorMessage != null){
+                  this.status = 'error'
+              }
+          }
+      );
+  
+        Swal.fire('Imagen eliminada!', '', 'success')
+      }
+    })
+
+
+
+
   }
 }

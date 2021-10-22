@@ -65,7 +65,7 @@ export class AppComponent implements OnInit, DoCheck {
         });
         dialogRef.afterClosed().subscribe(
           result=>{
-            alert(result.name);
+            //alert(result.name);
           }
         )
     }
